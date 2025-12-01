@@ -162,6 +162,130 @@ func (a *DefaultApiService) AggregateIndicatorExecute(r ApiAggregateIndicatorReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiAiChatRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	search *AIChatBody
+}
+
+// Search body
+func (r ApiAiChatRequest) Search(search AIChatBody) ApiAiChatRequest {
+	r.search = &search
+	return r
+}
+
+func (r ApiAiChatRequest) Execute() (AIChatResponse, *_nethttp.Response, error) {
+	return r.ApiService.AiChatExecute(r)
+}
+
+/*
+AiChat AI Copilot
+
+<p>Chat with our AI copilot powered by Neyman AI trained on the extensive Finnhub's global data. You can ask it any finance-related questions just like with other LLM models and receive results in texts and widgets.</p>
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAiChatRequest
+*/
+func (a *DefaultApiService) AiChat(ctx _context.Context) ApiAiChatRequest {
+	return ApiAiChatRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AIChatResponse
+func (a *DefaultApiService) AiChatExecute(r ApiAiChatRequest) (AIChatResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  AIChatResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AiChat")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/ai-chat"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.search
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiAirlinePriceIndexRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
@@ -5515,7 +5639,7 @@ func (r ApiFinancialsRequest) Freq(freq string) ApiFinancialsRequest {
 	r.freq = &freq
 	return r
 }
-// If set to &lt;code&gt;true&lt;/code&gt;, it will return Preliminary financial statements which are usually available within an hour of the earnings announcement. The Preliminary data is subjected to changes later as our team review and standardize the data. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see &lt;code&gt;\&quot;preliminary\&quot;: true&lt;/code&gt; in the data if that period is using preliminary data.
+// If set to &lt;code&gt;true&lt;/code&gt;, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see &lt;code&gt;\&quot;preliminary\&quot;: true&lt;/code&gt; in the data if that period is using preliminary data.
 func (r ApiFinancialsRequest) Preliminary(preliminary string) ApiFinancialsRequest {
 	r.preliminary = &preliminary
 	return r
@@ -5528,7 +5652,7 @@ func (r ApiFinancialsRequest) Execute() (FinancialStatements, *_nethttp.Response
 /*
 Financials Financial Statements
 
-<p>Get standardized balance sheet, income statement and cash flow for global companies going back 30+ years. Data is sourced from original filings most of which made available through <a href="#filings">SEC Filings</a> and <a href="#international-filings">International Filings</a> endpoints.</p><p><i>Wondering why our standardized data is different from Bloomberg, Reuters, Factset, S&P or Yahoo Finance ? Check out our <a href="/faq">FAQ page</a> to learn more</i></p>
+<p>Get standardized balance sheet, income statement and cash flow for global companies going back 30+ years. Data is sourced from original filings most of which made available through <a href="#filings">SEC Filings</a> and <a href="#international-filings">International Filings</a> endpoints.</p><p>Set <code>preliminary</code> param to true for faster updates for US companies.</p><p><i>Wondering why our standardized data is different from Bloomberg, Reuters, Factset, S&P or Yahoo Finance ? Check out our <a href="/faq">FAQ page</a> to learn more</i></p>
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiFinancialsRequest
@@ -9536,6 +9660,150 @@ func (a *DefaultApiService) NewsSentimentExecute(r ApiNewsSentimentRequest) (New
 	}
 
 	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiNewsroomRequest struct {
+	ctx _context.Context
+	ApiService *DefaultApiService
+	symbol *string
+	from *string
+	to *string
+}
+
+// Company symbol.
+func (r ApiNewsroomRequest) Symbol(symbol string) ApiNewsroomRequest {
+	r.symbol = &symbol
+	return r
+}
+// From time: 2025-01-01.
+func (r ApiNewsroomRequest) From(from string) ApiNewsroomRequest {
+	r.from = &from
+	return r
+}
+// To time: 2026-01-05.
+func (r ApiNewsroomRequest) To(to string) ApiNewsroomRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiNewsroomRequest) Execute() (Newsroom, *_nethttp.Response, error) {
+	return r.ApiService.NewsroomExecute(r)
+}
+
+/*
+Newsroom Newsroom
+
+<p>Get latest articles posted directly on the companies' newsroom and investor relations page. Newsroom API along with the Press Releases API provide a comprehensive text-based dataset directly from the company. We currently cover 1,500 US Companies with this dataset.</p>
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiNewsroomRequest
+*/
+func (a *DefaultApiService) Newsroom(ctx _context.Context) ApiNewsroomRequest {
+	return ApiNewsroomRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return Newsroom
+func (a *DefaultApiService) NewsroomExecute(r ApiNewsroomRequest) (Newsroom, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Newsroom
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Newsroom")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/stock/newsroom"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.symbol == nil {
+		return localVarReturnValue, nil, reportError("symbol is required and must be specified")
+	}
+
+	localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

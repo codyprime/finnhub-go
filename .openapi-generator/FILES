@@ -130,6 +130,8 @@ docs/MutualFundProfileData.md
 docs/MutualFundSectorExposure.md
 docs/MutualFundSectorExposureData.md
 docs/NewsSentiment.md
+docs/Newsroom.md
+docs/NewsroomArticle.md
 docs/Ownership.md
 docs/OwnershipInfo.md
 docs/PatternRecognition.md
@@ -307,6 +309,8 @@ model_mutual_fund_profile_data.go
 model_mutual_fund_sector_exposure.go
 model_mutual_fund_sector_exposure_data.go
 model_news_sentiment.go
+model_newsroom.go
+model_newsroom_article.go
 model_ownership.go
 model_ownership_info.go
 model_pattern_recognition.go

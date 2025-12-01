@@ -836,7 +836,8 @@ paths:
       description: <p>Get standardized balance sheet, income statement and cash flow
         for global companies going back 30+ years. Data is sourced from original filings
         most of which made available through <a href="#filings">SEC Filings</a> and
-        <a href="#international-filings">International Filings</a> endpoints.</p><p><i>Wondering
+        <a href="#international-filings">International Filings</a> endpoints.</p><p>Set
+        <code>preliminary</code> param to true for faster updates for US companies.</p><p><i>Wondering
         why our standardized data is different from Bloomberg, Reuters, Factset, S&P
         or Yahoo Finance ? Check out our <a href="/faq">FAQ page</a> to learn more</i></p>
       operationId: financials
@@ -864,11 +865,11 @@ paths:
         schema:
           type: string
       - description: 'If set to <code>true</code>, it will return Preliminary financial
-          statements which are usually available within an hour of the earnings announcement.
-          The Preliminary data is subjected to changes later as our team review and
-          standardize the data. This preliminary data is currently available for US
-          companies and reserved for Enterprise users only. You will see <code>"preliminary":
-          true</code> in the data if that period is using preliminary data.'
+          statements for the latest period which are usually available within an hour
+          of the earnings announcement if finalized data is not available yet. This
+          preliminary data is currently available for US companies and reserved for
+          Enterprise users only. You will see <code>"preliminary": true</code> in
+          the data if that period is using preliminary data.'
         in: query
         name: preliminary
         schema:
@@ -3435,6 +3436,70 @@ paths:
       summary: Revenue Breakdown & KPI
       tags:
       - Default
+  /stock/newsroom:
+    get:
+      description: <p>Get latest articles posted directly on the companies' newsroom
+        and investor relations page. Newsroom API along with the Press Releases API
+        provide a comprehensive text-based dataset directly from the company. We currently
+        cover 1,500 US Companies with this dataset.</p>
+      operationId: newsroom
+      parameters:
+      - description: Company symbol.
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+      - description: 'From time: 2025-01-01.'
+        in: query
+        name: from
+        schema:
+          format: date
+          type: string
+      - description: 'To time: 2026-01-05.'
+        in: query
+        name: to
+        schema:
+          format: date
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Newsroom'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: Newsroom
+      tags:
+      - Default
+  /ai-chat:
+    post:
+      description: <p>Chat with our AI copilot powered by Neyman AI trained on the
+        extensive Finnhub's global data. You can ask it any finance-related questions
+        just like with other LLM models and receive results in texts and widgets.</p>
+      operationId: ai-chat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AIChatBody'
+        description: Search body
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIChatResponse'
+          description: successful operation
+      security:
+      - api_key: []
+      summary: AI Copilot
+      tags:
+      - Default
+      x-codegen-request-body-name: search
 components:
   schemas:
     SearchBody:
@@ -3524,6 +3589,13 @@ components:
       - query
       type: object
     AIChatBody:
+      example:
+        stream: true
+        messages:
+        - role: role
+          content: content
+        - role: role
+          content: content
       properties:
         messages:
           description: Messages
@@ -3537,6 +3609,9 @@ components:
       - messages
       type: object
     AIChatMessage:
+      example:
+        role: role
+        content: content
       properties:
         role:
           description: Role system/user
@@ -3546,6 +3621,22 @@ components:
           type: string
       type: object
     AIChatResponse:
+      example:
+        chatId: chatId
+        relatedQueries:
+        - '{}'
+        - '{}'
+        sources:
+        - '{}'
+        - '{}'
+        widgets:
+        - '{}'
+        - '{}'
+        tickers:
+        - '{}'
+        - '{}'
+        content: content
+        querySummary: querySummary
       properties:
         chatId:
           description: Chat ID.
@@ -4371,6 +4462,49 @@ components:
           description: Array of major developments.
           items:
             $ref: '#/components/schemas/Development'
+          type: array
+      type: object
+    NewsroomArticle:
+      example:
+        atDate: atDate
+        fullText: fullText
+        title: title
+        url: url
+      properties:
+        atDate:
+          description: Published time in <code>YYYY-MM-DD HH:MM:SS</code> format (EST
+            timezone).
+          type: string
+        title:
+          description: Title.
+          type: string
+        fullText:
+          description: URL to download the full text data.
+          type: string
+        url:
+          description: Original URL.
+          type: string
+      type: object
+    Newsroom:
+      example:
+        symbol: symbol
+        data:
+        - atDate: atDate
+          fullText: fullText
+          title: title
+          url: url
+        - atDate: atDate
+          fullText: fullText
+          title: title
+          url: url
+      properties:
+        symbol:
+          description: Company symbol.
+          type: string
+        data:
+          description: Array of articles.
+          items:
+            $ref: '#/components/schemas/NewsroomArticle'
           type: array
       type: object
     CompanyNewsStatistics:

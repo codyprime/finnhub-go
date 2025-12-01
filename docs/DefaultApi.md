@@ -5,6 +5,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AggregateIndicator**](DefaultApi.md#AggregateIndicator) | **Get** /scan/technical-indicator | Aggregate Indicators
+[**AiChat**](DefaultApi.md#AiChat) | **Post** /ai-chat | AI Copilot
 [**AirlinePriceIndex**](DefaultApi.md#AirlinePriceIndex) | **Get** /airline/price-index | Airline Price Index
 [**BankBranch**](DefaultApi.md#BankBranch) | **Get** /bank-branch | Bank Branch List
 [**BondPrice**](DefaultApi.md#BondPrice) | **Get** /bond/price | Bond price data
@@ -74,6 +75,7 @@ Method | HTTP request | Description
 [**MutualFundProfile**](DefaultApi.md#MutualFundProfile) | **Get** /mutual-fund/profile | Mutual Funds Profile
 [**MutualFundSectorExposure**](DefaultApi.md#MutualFundSectorExposure) | **Get** /mutual-fund/sector | Mutual Funds Sector Exposure
 [**NewsSentiment**](DefaultApi.md#NewsSentiment) | **Get** /news-sentiment | News Sentiment
+[**Newsroom**](DefaultApi.md#Newsroom) | **Get** /stock/newsroom | Newsroom
 [**Ownership**](DefaultApi.md#Ownership) | **Get** /stock/ownership | Ownership
 [**PatternRecognition**](DefaultApi.md#PatternRecognition) | **Get** /scan/pattern | Pattern Recognition
 [**PressReleases**](DefaultApi.md#PressReleases) | **Get** /press-releases | Major Press Releases
@@ -171,6 +173,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AiChat
+
+> AIChatResponse AiChat(ctx).Search(search).Execute()
+
+AI Copilot
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    search := *openapiclient.NewAIChatBody([]openapiclient.AIChatMessage{*openapiclient.NewAIChatMessage()}) // AIChatBody | Search body (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.AiChat(context.Background()).Search(search).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AiChat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AiChat`: AIChatResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AiChat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAiChatRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **search** | [**AIChatBody**](AIChatBody.md) | Search body | 
+
+### Return type
+
+[**AIChatResponse**](AIChatResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -2851,7 +2919,7 @@ func main() {
     symbol := "symbol_example" // string | Symbol of the company: AAPL.
     statement := "statement_example" // string | Statement can take 1 of these values <code>bs, ic, cf</code> for Balance Sheet, Income Statement, Cash Flow respectively.
     freq := "freq_example" // string | Frequency can take 1 of these values <code>annual, quarterly, ttm, ytd</code>.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow.
-    preliminary := "preliminary_example" // string | If set to <code>true</code>, it will return Preliminary financial statements which are usually available within an hour of the earnings announcement. The Preliminary data is subjected to changes later as our team review and standardize the data. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see <code>\"preliminary\": true</code> in the data if that period is using preliminary data. (optional)
+    preliminary := "preliminary_example" // string | If set to <code>true</code>, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see <code>\"preliminary\": true</code> in the data if that period is using preliminary data. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -2879,7 +2947,7 @@ Name | Type | Description  | Notes
  **symbol** | **string** | Symbol of the company: AAPL. | 
  **statement** | **string** | Statement can take 1 of these values &lt;code&gt;bs, ic, cf&lt;/code&gt; for Balance Sheet, Income Statement, Cash Flow respectively. | 
  **freq** | **string** | Frequency can take 1 of these values &lt;code&gt;annual, quarterly, ttm, ytd&lt;/code&gt;.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow. | 
- **preliminary** | **string** | If set to &lt;code&gt;true&lt;/code&gt;, it will return Preliminary financial statements which are usually available within an hour of the earnings announcement. The Preliminary data is subjected to changes later as our team review and standardize the data. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see &lt;code&gt;\&quot;preliminary\&quot;: true&lt;/code&gt; in the data if that period is using preliminary data. | 
+ **preliminary** | **string** | If set to &lt;code&gt;true&lt;/code&gt;, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see &lt;code&gt;\&quot;preliminary\&quot;: true&lt;/code&gt; in the data if that period is using preliminary data. | 
 
 ### Return type
 
@@ -4868,6 +4936,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NewsSentiment**](NewsSentiment.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Newsroom
+
+> Newsroom Newsroom(ctx).Symbol(symbol).From(from).To(to).Execute()
+
+Newsroom
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    symbol := "symbol_example" // string | Company symbol.
+    from := time.Now() // string | From time: 2025-01-01. (optional)
+    to := time.Now() // string | To time: 2026-01-05. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.Newsroom(context.Background()).Symbol(symbol).From(from).To(to).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.Newsroom``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Newsroom`: Newsroom
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.Newsroom`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNewsroomRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string** | Company symbol. | 
+ **from** | **string** | From time: 2025-01-01. | 
+ **to** | **string** | To time: 2026-01-05. | 
+
+### Return type
+
+[**Newsroom**](Newsroom.md)
 
 ### Authorization
 
