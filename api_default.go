@@ -27,9 +27,9 @@ var (
 type DefaultApiService service
 
 type ApiAggregateIndicatorRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 	resolution *string
 }
 
@@ -38,6 +38,7 @@ func (r ApiAggregateIndicatorRequest) Symbol(symbol string) ApiAggregateIndicato
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiAggregateIndicatorRequest) Resolution(resolution string) ApiAggregateIndicatorRequest {
 	r.resolution = &resolution
@@ -53,18 +54,19 @@ AggregateIndicator Aggregate Indicators
 
 Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v. A full list of indicators can be found <a href="https://docs.google.com/spreadsheets/d/1MWuy0WuT2yVlxr1KbPdggVygMZtJfunDnhe-C0GEXYM/edit?usp=sharing" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAggregateIndicatorRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAggregateIndicatorRequest
 */
 func (a *DefaultApiService) AggregateIndicator(ctx _context.Context) ApiAggregateIndicatorRequest {
 	return ApiAggregateIndicatorRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AggregateIndicators
+//
+//	@return AggregateIndicators
 func (a *DefaultApiService) AggregateIndicatorExecute(r ApiAggregateIndicatorRequest) (AggregateIndicators, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -163,9 +165,9 @@ func (a *DefaultApiService) AggregateIndicatorExecute(r ApiAggregateIndicatorReq
 }
 
 type ApiAiChatRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	search *AIChatBody
+	search     *AIChatBody
 }
 
 // Search body
@@ -183,18 +185,19 @@ AiChat AI Copilot
 
 <p>Chat with our AI copilot powered by Neyman AI trained on the extensive Finnhub's global data. You can ask it any finance-related questions just like with other LLM models and receive results in texts and widgets.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAiChatRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAiChatRequest
 */
 func (a *DefaultApiService) AiChat(ctx _context.Context) ApiAiChatRequest {
 	return ApiAiChatRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AIChatResponse
+//
+//	@return AIChatResponse
 func (a *DefaultApiService) AiChatExecute(r ApiAiChatRequest) (AIChatResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -287,11 +290,11 @@ func (a *DefaultApiService) AiChatExecute(r ApiAiChatRequest) (AIChatResponse, *
 }
 
 type ApiAirlinePriceIndexRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	airline *string
-	from *string
-	to *string
+	airline    *string
+	from       *string
+	to         *string
 }
 
 // Filter data by airline. Accepted values: &lt;code&gt;united&lt;/code&gt;,&lt;code&gt;delta&lt;/code&gt;,&lt;code&gt;american_airlines&lt;/code&gt;,&lt;code&gt;southwest&lt;/code&gt;,&lt;code&gt;southern_airways_express&lt;/code&gt;,&lt;code&gt;alaska_airlines&lt;/code&gt;,&lt;code&gt;frontier_airlines&lt;/code&gt;,&lt;code&gt;jetblue_airways&lt;/code&gt;,&lt;code&gt;spirit_airlines&lt;/code&gt;,&lt;code&gt;sun_country_airlines&lt;/code&gt;,&lt;code&gt;breeze_airways&lt;/code&gt;,&lt;code&gt;hawaiian_airlines&lt;/code&gt;
@@ -299,11 +302,13 @@ func (r ApiAirlinePriceIndexRequest) Airline(airline string) ApiAirlinePriceInde
 	r.airline = &airline
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiAirlinePriceIndexRequest) From(from string) ApiAirlinePriceIndexRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiAirlinePriceIndexRequest) To(to string) ApiAirlinePriceIndexRequest {
 	r.to = &to
@@ -319,18 +324,19 @@ AirlinePriceIndex Airline Price Index
 
 <p>The Flight Ticket Price Index API provides comprehensive data on airline ticket prices, including the average daily ticket price and its percentage change (price index). This data, collected weekly and projected two weeks ahead, aggregates daily prices and indexes from the 50 busiest and largest airports across the USA. The dataset includes detailed information on airlines, dates, and average ticket prices, offering valuable insights for market analysis and pricing strategies.</p><p>The price index is calculated as percentage change of average daily ticket price from the previous weekly reading. Raw ticket prices data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to inquire about the raw price data.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAirlinePriceIndexRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiAirlinePriceIndexRequest
 */
 func (a *DefaultApiService) AirlinePriceIndex(ctx _context.Context) ApiAirlinePriceIndexRequest {
 	return ApiAirlinePriceIndexRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AirlinePriceIndexData
+//
+//	@return AirlinePriceIndexData
 func (a *DefaultApiService) AirlinePriceIndexExecute(r ApiAirlinePriceIndexRequest) (AirlinePriceIndexData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -433,9 +439,9 @@ func (a *DefaultApiService) AirlinePriceIndexExecute(r ApiAirlinePriceIndexReque
 }
 
 type ApiBankBranchRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *interface{}
+	symbol     *interface{}
 }
 
 // Symbol.
@@ -453,18 +459,19 @@ BankBranch Bank Branch List
 
 Retrieve list of US bank branches information for a given symbol.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBankBranchRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBankBranchRequest
 */
 func (a *DefaultApiService) BankBranch(ctx _context.Context) ApiBankBranchRequest {
 	return ApiBankBranchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BankBranchRes
+//
+//	@return BankBranchRes
 func (a *DefaultApiService) BankBranchExecute(r ApiBankBranchRequest) (BankBranchRes, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -559,11 +566,11 @@ func (a *DefaultApiService) BankBranchExecute(r ApiBankBranchRequest) (BankBranc
 }
 
 type ApiBondPriceRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	isin *string
-	from *int64
-	to *int64
+	isin       *string
+	from       *int64
+	to         *int64
 }
 
 // ISIN.
@@ -571,11 +578,13 @@ func (r ApiBondPriceRequest) Isin(isin string) ApiBondPriceRequest {
 	r.isin = &isin
 	return r
 }
+
 // UNIX timestamp. Interval initial value.
 func (r ApiBondPriceRequest) From(from int64) ApiBondPriceRequest {
 	r.from = &from
 	return r
 }
+
 // UNIX timestamp. Interval end value.
 func (r ApiBondPriceRequest) To(to int64) ApiBondPriceRequest {
 	r.to = &to
@@ -590,44 +599,47 @@ func (r ApiBondPriceRequest) Execute() (BondCandles, *_nethttp.Response, error) 
 BondPrice Bond price data
 
 <p>Get bond's price data. The following datasets are supported:</p><table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Exchange</th>
-      <th>Segment</th>
-      <th>Delay</th>
-    </tr>
-  </thead>
-  <tbody>
-  <tr>
-      <td class="text-blue">US Government Bonds</th>
-      <td>Government Bonds</td>
-      <td>End-of-day</td>
-    </tr>
-    <tr>
-      <td class="text-blue">FINRA Trace</th>
-      <td>BTDS: US Corporate Bonds</td>
-      <td>Delayed 4h</td>
-    </tr>
-    <tr>
-      <td class="text-blue">FINRA Trace</th>
-      <td>144A Bonds</td>
-      <td>Delayed 4h</td>
-    </tr>
-  </tbody>
+
+	<thead>
+	  <tr>
+	    <th>Exchange</th>
+	    <th>Segment</th>
+	    <th>Delay</th>
+	  </tr>
+	</thead>
+	<tbody>
+	<tr>
+	    <td class="text-blue">US Government Bonds</th>
+	    <td>Government Bonds</td>
+	    <td>End-of-day</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">FINRA Trace</th>
+	    <td>BTDS: US Corporate Bonds</td>
+	    <td>Delayed 4h</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">FINRA Trace</th>
+	    <td>144A Bonds</td>
+	    <td>Delayed 4h</td>
+	  </tr>
+	</tbody>
+
 </table>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBondPriceRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBondPriceRequest
 */
 func (a *DefaultApiService) BondPrice(ctx _context.Context) ApiBondPriceRequest {
 	return ApiBondPriceRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BondCandles
+//
+//	@return BondCandles
 func (a *DefaultApiService) BondPriceExecute(r ApiBondPriceRequest) (BondCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -730,11 +742,11 @@ func (a *DefaultApiService) BondPriceExecute(r ApiBondPriceRequest) (BondCandles
 }
 
 type ApiBondProfileRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	isin *string
-	cusip *string
-	figi *string
+	isin       *string
+	cusip      *string
+	figi       *string
 }
 
 // ISIN
@@ -742,11 +754,13 @@ func (r ApiBondProfileRequest) Isin(isin string) ApiBondProfileRequest {
 	r.isin = &isin
 	return r
 }
+
 // CUSIP
 func (r ApiBondProfileRequest) Cusip(cusip string) ApiBondProfileRequest {
 	r.cusip = &cusip
 	return r
 }
+
 // FIGI
 func (r ApiBondProfileRequest) Figi(figi string) ApiBondProfileRequest {
 	r.figi = &figi
@@ -762,18 +776,19 @@ BondProfile Bond Profile
 
 Get general information of a bond. You can query by FIGI, ISIN or CUSIP. A list of supported bonds can be found <a href="/api/v1/bond/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBondProfileRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBondProfileRequest
 */
 func (a *DefaultApiService) BondProfile(ctx _context.Context) ApiBondProfileRequest {
 	return ApiBondProfileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BondProfile
+//
+//	@return BondProfile
 func (a *DefaultApiService) BondProfileExecute(r ApiBondProfileRequest) (BondProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -873,13 +888,13 @@ func (a *DefaultApiService) BondProfileExecute(r ApiBondProfileRequest) (BondPro
 }
 
 type ApiBondTickRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	isin *string
-	date *string
-	limit *int64
-	skip *int64
-	exchange *string
+	isin       *string
+	date       *string
+	limit      *int64
+	skip       *int64
+	exchange   *string
 }
 
 // ISIN.
@@ -887,21 +902,25 @@ func (r ApiBondTickRequest) Isin(isin string) ApiBondTickRequest {
 	r.isin = &isin
 	return r
 }
+
 // Date: 2020-04-02.
 func (r ApiBondTickRequest) Date(date string) ApiBondTickRequest {
 	r.date = &date
 	return r
 }
+
 // Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
 func (r ApiBondTickRequest) Limit(limit int64) ApiBondTickRequest {
 	r.limit = &limit
 	return r
 }
+
 // Number of ticks to skip. Use this parameter to loop through the entire data.
 func (r ApiBondTickRequest) Skip(skip int64) ApiBondTickRequest {
 	r.skip = &skip
 	return r
 }
+
 // Currently support the following values: &lt;code&gt;trace&lt;/code&gt;.
 func (r ApiBondTickRequest) Exchange(exchange string) ApiBondTickRequest {
 	r.exchange = &exchange
@@ -916,39 +935,42 @@ func (r ApiBondTickRequest) Execute() (BondTickData, *_nethttp.Response, error) 
 BondTick Bond Tick Data
 
 <p>Get trade-level data for bonds. The following datasets are supported:</p><table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Exchange</th>
-      <th>Segment</th>
-      <th>Delay</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-blue">FINRA Trace</th>
-      <td>BTDS: US Corporate Bonds</td>
-      <td>Delayed 4h</td>
-    </tr>
-    <tr>
-      <td class="text-blue">FINRA Trace</th>
-      <td>144A Bonds</td>
-      <td>Delayed 4h</td>
-    </tr>
-  </tbody>
+
+	<thead>
+	  <tr>
+	    <th>Exchange</th>
+	    <th>Segment</th>
+	    <th>Delay</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td class="text-blue">FINRA Trace</th>
+	    <td>BTDS: US Corporate Bonds</td>
+	    <td>Delayed 4h</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">FINRA Trace</th>
+	    <td>144A Bonds</td>
+	    <td>Delayed 4h</td>
+	  </tr>
+	</tbody>
+
 </table>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBondTickRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBondTickRequest
 */
 func (a *DefaultApiService) BondTick(ctx _context.Context) ApiBondTickRequest {
 	return ApiBondTickRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BondTickData
+//
+//	@return BondTickData
 func (a *DefaultApiService) BondTickExecute(r ApiBondTickRequest) (BondTickData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1059,9 +1081,9 @@ func (a *DefaultApiService) BondTickExecute(r ApiBondTickRequest) (BondTickData,
 }
 
 type ApiBondYieldCurveRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	code *string
+	code       *string
 }
 
 // Bond&#39;s code. You can find the list of supported code &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;.
@@ -1079,18 +1101,19 @@ BondYieldCurve Bond Yield Curve
 
 Get yield curve data for Treasury bonds.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBondYieldCurveRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBondYieldCurveRequest
 */
 func (a *DefaultApiService) BondYieldCurve(ctx _context.Context) ApiBondYieldCurveRequest {
 	return ApiBondYieldCurveRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BondYieldCurve
+//
+//	@return BondYieldCurve
 func (a *DefaultApiService) BondYieldCurveExecute(r ApiBondYieldCurveRequest) (BondYieldCurve, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1185,10 +1208,10 @@ func (a *DefaultApiService) BondYieldCurveExecute(r ApiBondYieldCurveRequest) (B
 }
 
 type ApiCompanyBasicFinancialsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	metric *string
+	symbol     *string
+	metric     *string
 }
 
 // Symbol of the company: AAPL.
@@ -1196,6 +1219,7 @@ func (r ApiCompanyBasicFinancialsRequest) Symbol(symbol string) ApiCompanyBasicF
 	r.symbol = &symbol
 	return r
 }
+
 // Metric type. Can be 1 of the following values &lt;code&gt;all&lt;/code&gt;
 func (r ApiCompanyBasicFinancialsRequest) Metric(metric string) ApiCompanyBasicFinancialsRequest {
 	r.metric = &metric
@@ -1211,18 +1235,19 @@ CompanyBasicFinancials Basic Financials
 
 Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyBasicFinancialsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyBasicFinancialsRequest
 */
 func (a *DefaultApiService) CompanyBasicFinancials(ctx _context.Context) ApiCompanyBasicFinancialsRequest {
 	return ApiCompanyBasicFinancialsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BasicFinancials
+//
+//	@return BasicFinancials
 func (a *DefaultApiService) CompanyBasicFinancialsExecute(r ApiCompanyBasicFinancialsRequest) (BasicFinancials, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1321,10 +1346,10 @@ func (a *DefaultApiService) CompanyBasicFinancialsExecute(r ApiCompanyBasicFinan
 }
 
 type ApiCompanyEarningsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	limit *int64
+	symbol     *string
+	limit      *int64
 }
 
 // Symbol of the company: AAPL.
@@ -1332,6 +1357,7 @@ func (r ApiCompanyEarningsRequest) Symbol(symbol string) ApiCompanyEarningsReque
 	r.symbol = &symbol
 	return r
 }
+
 // Limit number of period returned. Leave blank to get the full history.
 func (r ApiCompanyEarningsRequest) Limit(limit int64) ApiCompanyEarningsRequest {
 	r.limit = &limit
@@ -1347,18 +1373,19 @@ CompanyEarnings Earnings Surprises
 
 Get company historical quarterly earnings surprise going back to 2000.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyEarningsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyEarningsRequest
 */
 func (a *DefaultApiService) CompanyEarnings(ctx _context.Context) ApiCompanyEarningsRequest {
 	return ApiCompanyEarningsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []EarningResult
+//
+//	@return []EarningResult
 func (a *DefaultApiService) CompanyEarningsExecute(r ApiCompanyEarningsRequest) ([]EarningResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1456,10 +1483,10 @@ func (a *DefaultApiService) CompanyEarningsExecute(r ApiCompanyEarningsRequest) 
 }
 
 type ApiCompanyEarningsQualityScoreRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	freq *string
+	symbol     *string
+	freq       *string
 }
 
 // Symbol.
@@ -1467,6 +1494,7 @@ func (r ApiCompanyEarningsQualityScoreRequest) Symbol(symbol string) ApiCompanyE
 	r.symbol = &symbol
 	return r
 }
+
 // Frequency. Currently support &lt;code&gt;annual&lt;/code&gt; and &lt;code&gt;quarterly&lt;/code&gt;
 func (r ApiCompanyEarningsQualityScoreRequest) Freq(freq string) ApiCompanyEarningsQualityScoreRequest {
 	r.freq = &freq
@@ -1482,18 +1510,19 @@ CompanyEarningsQualityScore Company Earnings Quality Score
 
 <p>This endpoint provides Earnings Quality Score for global companies.</p><p> Earnings quality refers to the extent to which current earnings predict future earnings. "High-quality" earnings are expected to persist, while "low-quality" earnings do not. A higher score means a higher earnings quality</p><p>Finnhub uses a proprietary model which takes into consideration 4 criteria:</p> <ul style="list-style-type: unset; margin-left: 30px;"><li>Profitability</li><li>Growth</li><li>Cash Generation & Capital Allocation</li><li>Leverage</li></ul><br/><p>We then compare the metrics of each company in each category against its peers in the same industry to gauge how quality its earnings is.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyEarningsQualityScoreRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyEarningsQualityScoreRequest
 */
 func (a *DefaultApiService) CompanyEarningsQualityScore(ctx _context.Context) ApiCompanyEarningsQualityScoreRequest {
 	return ApiCompanyEarningsQualityScoreRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CompanyEarningsQualityScore
+//
+//	@return CompanyEarningsQualityScore
 func (a *DefaultApiService) CompanyEarningsQualityScoreExecute(r ApiCompanyEarningsQualityScoreRequest) (CompanyEarningsQualityScore, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1592,10 +1621,10 @@ func (a *DefaultApiService) CompanyEarningsQualityScoreExecute(r ApiCompanyEarni
 }
 
 type ApiCompanyEbitEstimatesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	freq *string
+	symbol     *string
+	freq       *string
 }
 
 // Symbol of the company: AAPL.
@@ -1603,6 +1632,7 @@ func (r ApiCompanyEbitEstimatesRequest) Symbol(symbol string) ApiCompanyEbitEsti
 	r.symbol = &symbol
 	return r
 }
+
 // Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
 func (r ApiCompanyEbitEstimatesRequest) Freq(freq string) ApiCompanyEbitEstimatesRequest {
 	r.freq = &freq
@@ -1618,18 +1648,19 @@ CompanyEbitEstimates EBIT Estimates
 
 Get company's ebit estimates.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyEbitEstimatesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyEbitEstimatesRequest
 */
 func (a *DefaultApiService) CompanyEbitEstimates(ctx _context.Context) ApiCompanyEbitEstimatesRequest {
 	return ApiCompanyEbitEstimatesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EbitEstimates
+//
+//	@return EbitEstimates
 func (a *DefaultApiService) CompanyEbitEstimatesExecute(r ApiCompanyEbitEstimatesRequest) (EbitEstimates, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1727,10 +1758,10 @@ func (a *DefaultApiService) CompanyEbitEstimatesExecute(r ApiCompanyEbitEstimate
 }
 
 type ApiCompanyEbitdaEstimatesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	freq *string
+	symbol     *string
+	freq       *string
 }
 
 // Symbol of the company: AAPL.
@@ -1738,6 +1769,7 @@ func (r ApiCompanyEbitdaEstimatesRequest) Symbol(symbol string) ApiCompanyEbitda
 	r.symbol = &symbol
 	return r
 }
+
 // Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
 func (r ApiCompanyEbitdaEstimatesRequest) Freq(freq string) ApiCompanyEbitdaEstimatesRequest {
 	r.freq = &freq
@@ -1753,18 +1785,19 @@ CompanyEbitdaEstimates EBITDA Estimates
 
 Get company's ebitda estimates.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyEbitdaEstimatesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyEbitdaEstimatesRequest
 */
 func (a *DefaultApiService) CompanyEbitdaEstimates(ctx _context.Context) ApiCompanyEbitdaEstimatesRequest {
 	return ApiCompanyEbitdaEstimatesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EbitdaEstimates
+//
+//	@return EbitdaEstimates
 func (a *DefaultApiService) CompanyEbitdaEstimatesExecute(r ApiCompanyEbitdaEstimatesRequest) (EbitdaEstimates, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1862,10 +1895,10 @@ func (a *DefaultApiService) CompanyEbitdaEstimatesExecute(r ApiCompanyEbitdaEsti
 }
 
 type ApiCompanyEpsEstimatesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	freq *string
+	symbol     *string
+	freq       *string
 }
 
 // Symbol of the company: AAPL.
@@ -1873,6 +1906,7 @@ func (r ApiCompanyEpsEstimatesRequest) Symbol(symbol string) ApiCompanyEpsEstima
 	r.symbol = &symbol
 	return r
 }
+
 // Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
 func (r ApiCompanyEpsEstimatesRequest) Freq(freq string) ApiCompanyEpsEstimatesRequest {
 	r.freq = &freq
@@ -1888,18 +1922,19 @@ CompanyEpsEstimates Earnings Estimates
 
 Get company's EPS estimates.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyEpsEstimatesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyEpsEstimatesRequest
 */
 func (a *DefaultApiService) CompanyEpsEstimates(ctx _context.Context) ApiCompanyEpsEstimatesRequest {
 	return ApiCompanyEpsEstimatesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EarningsEstimates
+//
+//	@return EarningsEstimates
 func (a *DefaultApiService) CompanyEpsEstimatesExecute(r ApiCompanyEpsEstimatesRequest) (EarningsEstimates, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -1997,9 +2032,9 @@ func (a *DefaultApiService) CompanyEpsEstimatesExecute(r ApiCompanyEpsEstimatesR
 }
 
 type ApiCompanyEsgScoreRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol.
@@ -2017,18 +2052,19 @@ CompanyEsgScore Company ESG Scores
 
 <p>This endpoint provides the latest ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyEsgScoreRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyEsgScoreRequest
 */
 func (a *DefaultApiService) CompanyEsgScore(ctx _context.Context) ApiCompanyEsgScoreRequest {
 	return ApiCompanyEsgScoreRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CompanyESG
+//
+//	@return CompanyESG
 func (a *DefaultApiService) CompanyEsgScoreExecute(r ApiCompanyEsgScoreRequest) (CompanyESG, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2123,9 +2159,9 @@ func (a *DefaultApiService) CompanyEsgScoreExecute(r ApiCompanyEsgScoreRequest) 
 }
 
 type ApiCompanyExecutiveRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol of the company: AAPL.
@@ -2143,18 +2179,19 @@ CompanyExecutive Company Executive
 
 Get a list of company's executives and members of the Board.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyExecutiveRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyExecutiveRequest
 */
 func (a *DefaultApiService) CompanyExecutive(ctx _context.Context) ApiCompanyExecutiveRequest {
 	return ApiCompanyExecutiveRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CompanyExecutive
+//
+//	@return CompanyExecutive
 func (a *DefaultApiService) CompanyExecutiveExecute(r ApiCompanyExecutiveRequest) (CompanyExecutive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2249,9 +2286,9 @@ func (a *DefaultApiService) CompanyExecutiveExecute(r ApiCompanyExecutiveRequest
 }
 
 type ApiCompanyHistoricalEsgScoreRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol.
@@ -2269,18 +2306,19 @@ CompanyHistoricalEsgScore Historical ESG Scores
 
 <p>This endpoint provides historical ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyHistoricalEsgScoreRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyHistoricalEsgScoreRequest
 */
 func (a *DefaultApiService) CompanyHistoricalEsgScore(ctx _context.Context) ApiCompanyHistoricalEsgScoreRequest {
 	return ApiCompanyHistoricalEsgScoreRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return HistoricalCompanyESG
+//
+//	@return HistoricalCompanyESG
 func (a *DefaultApiService) CompanyHistoricalEsgScoreExecute(r ApiCompanyHistoricalEsgScoreRequest) (HistoricalCompanyESG, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2375,11 +2413,11 @@ func (a *DefaultApiService) CompanyHistoricalEsgScoreExecute(r ApiCompanyHistori
 }
 
 type ApiCompanyNewsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Company symbol.
@@ -2387,11 +2425,13 @@ func (r ApiCompanyNewsRequest) Symbol(symbol string) ApiCompanyNewsRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiCompanyNewsRequest) From(from string) ApiCompanyNewsRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiCompanyNewsRequest) To(to string) ApiCompanyNewsRequest {
 	r.to = &to
@@ -2407,18 +2447,19 @@ CompanyNews Company News
 
 List latest company news by symbol. This endpoint is only available for North American companies.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyNewsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyNewsRequest
 */
 func (a *DefaultApiService) CompanyNews(ctx _context.Context) ApiCompanyNewsRequest {
 	return ApiCompanyNewsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []CompanyNews
+//
+//	@return []CompanyNews
 func (a *DefaultApiService) CompanyNewsExecute(r ApiCompanyNewsRequest) ([]CompanyNews, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2521,10 +2562,10 @@ func (a *DefaultApiService) CompanyNewsExecute(r ApiCompanyNewsRequest) ([]Compa
 }
 
 type ApiCompanyPeersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	grouping *string
+	symbol     *string
+	grouping   *string
 }
 
 // Symbol of the company: AAPL.
@@ -2532,6 +2573,7 @@ func (r ApiCompanyPeersRequest) Symbol(symbol string) ApiCompanyPeersRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Specify the grouping criteria for choosing peers.Supporter values: &lt;code&gt;sector&lt;/code&gt;, &lt;code&gt;industry&lt;/code&gt;, &lt;code&gt;subIndustry&lt;/code&gt;. Default to &lt;code&gt;subIndustry&lt;/code&gt;.
 func (r ApiCompanyPeersRequest) Grouping(grouping string) ApiCompanyPeersRequest {
 	r.grouping = &grouping
@@ -2547,18 +2589,19 @@ CompanyPeers Peers
 
 Get company peers. Return a list of peers operating in the same country and sector/industry.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyPeersRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyPeersRequest
 */
 func (a *DefaultApiService) CompanyPeers(ctx _context.Context) ApiCompanyPeersRequest {
 	return ApiCompanyPeersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []string
+//
+//	@return []string
 func (a *DefaultApiService) CompanyPeersExecute(r ApiCompanyPeersRequest) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2656,11 +2699,11 @@ func (a *DefaultApiService) CompanyPeersExecute(r ApiCompanyPeersRequest) ([]str
 }
 
 type ApiCompanyProfileRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
-	cusip *string
+	symbol     *string
+	isin       *string
+	cusip      *string
 }
 
 // Symbol of the company: AAPL e.g.
@@ -2668,11 +2711,13 @@ func (r ApiCompanyProfileRequest) Symbol(symbol string) ApiCompanyProfileRequest
 	r.symbol = &symbol
 	return r
 }
+
 // ISIN
 func (r ApiCompanyProfileRequest) Isin(isin string) ApiCompanyProfileRequest {
 	r.isin = &isin
 	return r
 }
+
 // CUSIP
 func (r ApiCompanyProfileRequest) Cusip(cusip string) ApiCompanyProfileRequest {
 	r.cusip = &cusip
@@ -2688,18 +2733,19 @@ CompanyProfile Company Profile
 
 Get general information of a company. You can query by symbol, ISIN or CUSIP
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyProfileRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyProfileRequest
 */
 func (a *DefaultApiService) CompanyProfile(ctx _context.Context) ApiCompanyProfileRequest {
 	return ApiCompanyProfileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CompanyProfile
+//
+//	@return CompanyProfile
 func (a *DefaultApiService) CompanyProfileExecute(r ApiCompanyProfileRequest) (CompanyProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2799,11 +2845,11 @@ func (a *DefaultApiService) CompanyProfileExecute(r ApiCompanyProfileRequest) (C
 }
 
 type ApiCompanyProfile2Request struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
-	cusip *string
+	symbol     *string
+	isin       *string
+	cusip      *string
 }
 
 // Symbol of the company: AAPL e.g.
@@ -2811,11 +2857,13 @@ func (r ApiCompanyProfile2Request) Symbol(symbol string) ApiCompanyProfile2Reque
 	r.symbol = &symbol
 	return r
 }
+
 // ISIN
 func (r ApiCompanyProfile2Request) Isin(isin string) ApiCompanyProfile2Request {
 	r.isin = &isin
 	return r
 }
+
 // CUSIP
 func (r ApiCompanyProfile2Request) Cusip(cusip string) ApiCompanyProfile2Request {
 	r.cusip = &cusip
@@ -2831,18 +2879,19 @@ CompanyProfile2 Company Profile 2
 
 Get general information of a company. You can query by symbol, ISIN or CUSIP. This is the free version of <a href="#company-profile">Company Profile</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyProfile2Request
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyProfile2Request
 */
 func (a *DefaultApiService) CompanyProfile2(ctx _context.Context) ApiCompanyProfile2Request {
 	return ApiCompanyProfile2Request{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CompanyProfile2
+//
+//	@return CompanyProfile2
 func (a *DefaultApiService) CompanyProfile2Execute(r ApiCompanyProfile2Request) (CompanyProfile2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -2942,10 +2991,10 @@ func (a *DefaultApiService) CompanyProfile2Execute(r ApiCompanyProfile2Request) 
 }
 
 type ApiCompanyRevenueEstimatesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	freq *string
+	symbol     *string
+	freq       *string
 }
 
 // Symbol of the company: AAPL.
@@ -2953,6 +3002,7 @@ func (r ApiCompanyRevenueEstimatesRequest) Symbol(symbol string) ApiCompanyReven
 	r.symbol = &symbol
 	return r
 }
+
 // Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
 func (r ApiCompanyRevenueEstimatesRequest) Freq(freq string) ApiCompanyRevenueEstimatesRequest {
 	r.freq = &freq
@@ -2968,18 +3018,19 @@ CompanyRevenueEstimates Revenue Estimates
 
 Get company's revenue estimates.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompanyRevenueEstimatesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCompanyRevenueEstimatesRequest
 */
 func (a *DefaultApiService) CompanyRevenueEstimates(ctx _context.Context) ApiCompanyRevenueEstimatesRequest {
 	return ApiCompanyRevenueEstimatesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RevenueEstimates
+//
+//	@return RevenueEstimates
 func (a *DefaultApiService) CompanyRevenueEstimatesExecute(r ApiCompanyRevenueEstimatesRequest) (RevenueEstimates, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3077,11 +3128,11 @@ func (a *DefaultApiService) CompanyRevenueEstimatesExecute(r ApiCompanyRevenueEs
 }
 
 type ApiCongressionalTradingRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol of the company: AAPL.
@@ -3089,11 +3140,13 @@ func (r ApiCongressionalTradingRequest) Symbol(symbol string) ApiCongressionalTr
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiCongressionalTradingRequest) From(from string) ApiCongressionalTradingRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiCongressionalTradingRequest) To(to string) ApiCongressionalTradingRequest {
 	r.to = &to
@@ -3109,18 +3162,19 @@ CongressionalTrading Congressional Trading
 
 Get stock trades data disclosed by members of congress.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCongressionalTradingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCongressionalTradingRequest
 */
 func (a *DefaultApiService) CongressionalTrading(ctx _context.Context) ApiCongressionalTradingRequest {
 	return ApiCongressionalTradingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CongressionalTrading
+//
+//	@return CongressionalTrading
 func (a *DefaultApiService) CongressionalTradingExecute(r ApiCongressionalTradingRequest) (CongressionalTrading, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3223,10 +3277,9 @@ func (a *DefaultApiService) CongressionalTradingExecute(r ApiCongressionalTradin
 }
 
 type ApiCountryRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiCountryRequest) Execute() ([]CountryMetadata, *_nethttp.Response, error) {
 	return r.ApiService.CountryExecute(r)
@@ -3237,18 +3290,19 @@ Country Country Metadata
 
 List all countries and metadata.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCountryRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCountryRequest
 */
 func (a *DefaultApiService) Country(ctx _context.Context) ApiCountryRequest {
 	return ApiCountryRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []CountryMetadata
+//
+//	@return []CountryMetadata
 func (a *DefaultApiService) CountryExecute(r ApiCountryRequest) ([]CountryMetadata, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3339,10 +3393,9 @@ func (a *DefaultApiService) CountryExecute(r ApiCountryRequest) ([]CountryMetada
 }
 
 type ApiCovid19Request struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiCovid19Request) Execute() ([]CovidInfo, *_nethttp.Response, error) {
 	return r.ApiService.Covid19Execute(r)
@@ -3353,18 +3406,19 @@ Covid19 COVID-19
 
 Get real-time updates on the number of COVID-19 (Corona virus) cases in the US with a state-by-state breakdown. Data is sourced from CDC and reputable sources. You can also access this API <a href="https://rapidapi.com/Finnhub/api/finnhub-real-time-covid-19" target="_blank" rel="nofollow">here</a>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCovid19Request
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCovid19Request
 */
 func (a *DefaultApiService) Covid19(ctx _context.Context) ApiCovid19Request {
 	return ApiCovid19Request{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []CovidInfo
+//
+//	@return []CovidInfo
 func (a *DefaultApiService) Covid19Execute(r ApiCovid19Request) ([]CovidInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3455,12 +3509,12 @@ func (a *DefaultApiService) Covid19Execute(r ApiCovid19Request) ([]CovidInfo, *_
 }
 
 type ApiCryptoCandlesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 	resolution *string
-	from *int64
-	to *int64
+	from       *int64
+	to         *int64
 }
 
 // Use symbol returned in &lt;code&gt;/crypto/symbol&lt;/code&gt; endpoint for this field.
@@ -3468,16 +3522,19 @@ func (r ApiCryptoCandlesRequest) Symbol(symbol string) ApiCryptoCandlesRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiCryptoCandlesRequest) Resolution(resolution string) ApiCryptoCandlesRequest {
 	r.resolution = &resolution
 	return r
 }
+
 // UNIX timestamp. Interval initial value.
 func (r ApiCryptoCandlesRequest) From(from int64) ApiCryptoCandlesRequest {
 	r.from = &from
 	return r
 }
+
 // UNIX timestamp. Interval end value.
 func (r ApiCryptoCandlesRequest) To(to int64) ApiCryptoCandlesRequest {
 	r.to = &to
@@ -3493,18 +3550,19 @@ CryptoCandles Crypto Candles
 
 Get candlestick data for crypto symbols.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCryptoCandlesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCryptoCandlesRequest
 */
 func (a *DefaultApiService) CryptoCandles(ctx _context.Context) ApiCryptoCandlesRequest {
 	return ApiCryptoCandlesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CryptoCandles
+//
+//	@return CryptoCandles
 func (a *DefaultApiService) CryptoCandlesExecute(r ApiCryptoCandlesRequest) (CryptoCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3611,10 +3669,9 @@ func (a *DefaultApiService) CryptoCandlesExecute(r ApiCryptoCandlesRequest) (Cry
 }
 
 type ApiCryptoExchangesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiCryptoExchangesRequest) Execute() ([]string, *_nethttp.Response, error) {
 	return r.ApiService.CryptoExchangesExecute(r)
@@ -3625,18 +3682,19 @@ CryptoExchanges Crypto Exchanges
 
 List supported crypto exchanges
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCryptoExchangesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCryptoExchangesRequest
 */
 func (a *DefaultApiService) CryptoExchanges(ctx _context.Context) ApiCryptoExchangesRequest {
 	return ApiCryptoExchangesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []string
+//
+//	@return []string
 func (a *DefaultApiService) CryptoExchangesExecute(r ApiCryptoExchangesRequest) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3727,9 +3785,9 @@ func (a *DefaultApiService) CryptoExchangesExecute(r ApiCryptoExchangesRequest) 
 }
 
 type ApiCryptoProfileRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Crypto symbol such as BTC or ETH.
@@ -3747,18 +3805,19 @@ CryptoProfile Crypto Profile
 
 Get crypto's profile.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCryptoProfileRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCryptoProfileRequest
 */
 func (a *DefaultApiService) CryptoProfile(ctx _context.Context) ApiCryptoProfileRequest {
 	return ApiCryptoProfileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CryptoProfile
+//
+//	@return CryptoProfile
 func (a *DefaultApiService) CryptoProfileExecute(r ApiCryptoProfileRequest) (CryptoProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3853,9 +3912,9 @@ func (a *DefaultApiService) CryptoProfileExecute(r ApiCryptoProfileRequest) (Cry
 }
 
 type ApiCryptoSymbolsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	exchange *string
+	exchange   *string
 }
 
 // Exchange you want to get the list of symbols from.
@@ -3873,18 +3932,19 @@ CryptoSymbols Crypto Symbol
 
 List supported crypto symbols by exchange
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCryptoSymbolsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCryptoSymbolsRequest
 */
 func (a *DefaultApiService) CryptoSymbols(ctx _context.Context) ApiCryptoSymbolsRequest {
 	return ApiCryptoSymbolsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []CryptoSymbol
+//
+//	@return []CryptoSymbol
 func (a *DefaultApiService) CryptoSymbolsExecute(r ApiCryptoSymbolsRequest) ([]CryptoSymbol, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -3979,11 +4039,11 @@ func (a *DefaultApiService) CryptoSymbolsExecute(r ApiCryptoSymbolsRequest) ([]C
 }
 
 type ApiEarningsCalendarRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	from *string
-	to *string
-	symbol *string
+	ctx           _context.Context
+	ApiService    *DefaultApiService
+	from          *string
+	to            *string
+	symbol        *string
 	international *bool
 }
 
@@ -3992,16 +4052,19 @@ func (r ApiEarningsCalendarRequest) From(from string) ApiEarningsCalendarRequest
 	r.from = &from
 	return r
 }
+
 // To date: 2020-03-16.
 func (r ApiEarningsCalendarRequest) To(to string) ApiEarningsCalendarRequest {
 	r.to = &to
 	return r
 }
+
 // Filter by symbol: AAPL.
 func (r ApiEarningsCalendarRequest) Symbol(symbol string) ApiEarningsCalendarRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
 func (r ApiEarningsCalendarRequest) International(international bool) ApiEarningsCalendarRequest {
 	r.international = &international
@@ -4017,18 +4080,19 @@ EarningsCalendar Earnings Calendar
 
 Get historical and coming earnings release. EPS and Revenue in this endpoint are non-GAAP, which means they are adjusted to exclude some one-time or unusual items. This is the same data investors usually react to and talked about on the media. Estimates are sourced from both sell-side and buy-side analysts.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEarningsCalendarRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEarningsCalendarRequest
 */
 func (a *DefaultApiService) EarningsCalendar(ctx _context.Context) ApiEarningsCalendarRequest {
 	return ApiEarningsCalendarRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EarningsCalendar
+//
+//	@return EarningsCalendar
 func (a *DefaultApiService) EarningsCalendarExecute(r ApiEarningsCalendarRequest) (EarningsCalendar, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4131,11 +4195,11 @@ func (a *DefaultApiService) EarningsCalendarExecute(r ApiEarningsCalendarRequest
 }
 
 type ApiEarningsCallLiveRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	from *string
-	to *string
-	symbol *string
+	from       *string
+	to         *string
+	symbol     *string
 }
 
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -4143,11 +4207,13 @@ func (r ApiEarningsCallLiveRequest) From(from string) ApiEarningsCallLiveRequest
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiEarningsCallLiveRequest) To(to string) ApiEarningsCallLiveRequest {
 	r.to = &to
 	return r
 }
+
 // Filter by symbol: AAPL.
 func (r ApiEarningsCallLiveRequest) Symbol(symbol string) ApiEarningsCallLiveRequest {
 	r.symbol = &symbol
@@ -4163,18 +4229,19 @@ EarningsCallLive Earnings Call Audio Live
 
 <p>Stream live earnings calls with data provided in the calendar. The data will be available in m3u8 format. mp3 files will be available once the calls finish in the <code>recording</code> field.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEarningsCallLiveRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEarningsCallLiveRequest
 */
 func (a *DefaultApiService) EarningsCallLive(ctx _context.Context) ApiEarningsCallLiveRequest {
 	return ApiEarningsCallLiveRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EarningsCallLive
+//
+//	@return EarningsCallLive
 func (a *DefaultApiService) EarningsCallLiveExecute(r ApiEarningsCallLiveRequest) (EarningsCallLive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4274,10 +4341,10 @@ func (a *DefaultApiService) EarningsCallLiveExecute(r ApiEarningsCallLiveRequest
 }
 
 type ApiEconomicCalendarRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	from *string
-	to *string
+	from       *string
+	to         *string
 }
 
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -4285,6 +4352,7 @@ func (r ApiEconomicCalendarRequest) From(from string) ApiEconomicCalendarRequest
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiEconomicCalendarRequest) To(to string) ApiEconomicCalendarRequest {
 	r.to = &to
@@ -4300,18 +4368,19 @@ EconomicCalendar Economic Calendar
 
 <p>Get recent and upcoming economic releases.</p><p>Historical events and surprises are available for Enterprise clients.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEconomicCalendarRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEconomicCalendarRequest
 */
 func (a *DefaultApiService) EconomicCalendar(ctx _context.Context) ApiEconomicCalendarRequest {
 	return ApiEconomicCalendarRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EconomicCalendar
+//
+//	@return EconomicCalendar
 func (a *DefaultApiService) EconomicCalendarExecute(r ApiEconomicCalendarRequest) (EconomicCalendar, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4408,10 +4477,9 @@ func (a *DefaultApiService) EconomicCalendarExecute(r ApiEconomicCalendarRequest
 }
 
 type ApiEconomicCodeRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiEconomicCodeRequest) Execute() ([]EconomicCode, *_nethttp.Response, error) {
 	return r.ApiService.EconomicCodeExecute(r)
@@ -4422,18 +4490,19 @@ EconomicCode Economic Code
 
 List codes of supported economic data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEconomicCodeRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEconomicCodeRequest
 */
 func (a *DefaultApiService) EconomicCode(ctx _context.Context) ApiEconomicCodeRequest {
 	return ApiEconomicCodeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []EconomicCode
+//
+//	@return []EconomicCode
 func (a *DefaultApiService) EconomicCodeExecute(r ApiEconomicCodeRequest) ([]EconomicCode, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4524,9 +4593,9 @@ func (a *DefaultApiService) EconomicCodeExecute(r ApiEconomicCodeRequest) ([]Eco
 }
 
 type ApiEconomicDataRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	code *string
+	code       *string
 }
 
 // Economic code.
@@ -4544,18 +4613,19 @@ EconomicData Economic Data
 
 Get economic data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEconomicDataRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEconomicDataRequest
 */
 func (a *DefaultApiService) EconomicData(ctx _context.Context) ApiEconomicDataRequest {
 	return ApiEconomicDataRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EconomicData
+//
+//	@return EconomicData
 func (a *DefaultApiService) EconomicDataExecute(r ApiEconomicDataRequest) (EconomicData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4650,10 +4720,10 @@ func (a *DefaultApiService) EconomicDataExecute(r ApiEconomicDataRequest) (Econo
 }
 
 type ApiEtfsCountryExposureRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
+	symbol     *string
+	isin       *string
 }
 
 // ETF symbol.
@@ -4661,6 +4731,7 @@ func (r ApiEtfsCountryExposureRequest) Symbol(symbol string) ApiEtfsCountryExpos
 	r.symbol = &symbol
 	return r
 }
+
 // ETF isin.
 func (r ApiEtfsCountryExposureRequest) Isin(isin string) ApiEtfsCountryExposureRequest {
 	r.isin = &isin
@@ -4676,18 +4747,19 @@ EtfsCountryExposure ETFs Country Exposure
 
 Get ETF country exposure data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEtfsCountryExposureRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEtfsCountryExposureRequest
 */
 func (a *DefaultApiService) EtfsCountryExposure(ctx _context.Context) ApiEtfsCountryExposureRequest {
 	return ApiEtfsCountryExposureRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ETFsCountryExposure
+//
+//	@return ETFsCountryExposure
 func (a *DefaultApiService) EtfsCountryExposureExecute(r ApiEtfsCountryExposureRequest) (ETFsCountryExposure, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4784,12 +4856,12 @@ func (a *DefaultApiService) EtfsCountryExposureExecute(r ApiEtfsCountryExposureR
 }
 
 type ApiEtfsHoldingsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
-	skip *int64
-	date *string
+	symbol     *string
+	isin       *string
+	skip       *int64
+	date       *string
 }
 
 // ETF symbol.
@@ -4797,16 +4869,19 @@ func (r ApiEtfsHoldingsRequest) Symbol(symbol string) ApiEtfsHoldingsRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // ETF isin.
 func (r ApiEtfsHoldingsRequest) Isin(isin string) ApiEtfsHoldingsRequest {
 	r.isin = &isin
 	return r
 }
+
 // Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set.
 func (r ApiEtfsHoldingsRequest) Skip(skip int64) ApiEtfsHoldingsRequest {
 	r.skip = &skip
 	return r
 }
+
 // Query holdings by date. You can use either this param or &lt;code&gt;skip&lt;/code&gt; param, not both.
 func (r ApiEtfsHoldingsRequest) Date(date string) ApiEtfsHoldingsRequest {
 	r.date = &date
@@ -4822,18 +4897,19 @@ EtfsHoldings ETFs Holdings
 
 Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings. A list of supported ETFs can be found <a href="/api/v1/etf/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEtfsHoldingsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEtfsHoldingsRequest
 */
 func (a *DefaultApiService) EtfsHoldings(ctx _context.Context) ApiEtfsHoldingsRequest {
 	return ApiEtfsHoldingsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ETFsHoldings
+//
+//	@return ETFsHoldings
 func (a *DefaultApiService) EtfsHoldingsExecute(r ApiEtfsHoldingsRequest) (ETFsHoldings, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -4936,10 +5012,10 @@ func (a *DefaultApiService) EtfsHoldingsExecute(r ApiEtfsHoldingsRequest) (ETFsH
 }
 
 type ApiEtfsProfileRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
+	symbol     *string
+	isin       *string
 }
 
 // ETF symbol.
@@ -4947,6 +5023,7 @@ func (r ApiEtfsProfileRequest) Symbol(symbol string) ApiEtfsProfileRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // ETF isin.
 func (r ApiEtfsProfileRequest) Isin(isin string) ApiEtfsProfileRequest {
 	r.isin = &isin
@@ -4962,18 +5039,19 @@ EtfsProfile ETFs Profile
 
 Get ETF profile information. This endpoint has global coverage. A list of supported ETFs can be found <a href="/api/v1/etf/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEtfsProfileRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEtfsProfileRequest
 */
 func (a *DefaultApiService) EtfsProfile(ctx _context.Context) ApiEtfsProfileRequest {
 	return ApiEtfsProfileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ETFsProfile
+//
+//	@return ETFsProfile
 func (a *DefaultApiService) EtfsProfileExecute(r ApiEtfsProfileRequest) (ETFsProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5069,11 +5147,147 @@ func (a *DefaultApiService) EtfsProfileExecute(r ApiEtfsProfileRequest) (ETFsPro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEtfsSectorExposureRequest struct {
-	ctx _context.Context
+type ApiEtfsAllocationRequest struct {
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
+	symbol     *string
+	isin       *string
+}
+
+// ETF symbol.
+func (r ApiEtfsAllocationRequest) Symbol(symbol string) ApiEtfsAllocationRequest {
+	r.symbol = &symbol
+	return r
+}
+
+// ETF isin.
+func (r ApiEtfsAllocationRequest) Isin(isin string) ApiEtfsAllocationRequest {
+	r.isin = &isin
+	return r
+}
+
+func (r ApiEtfsAllocationRequest) Execute() (ETFAllocation, *_nethttp.Response, error) {
+	return r.ApiService.EtfsAllocationExecute(r)
+}
+
+/*
+EtfsAllocation ETFs Allocation
+
+Get ETF allocation data.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEtfsAllocationRequest
+*/
+func (a *DefaultApiService) EtfsAllocation(ctx _context.Context) ApiEtfsAllocationRequest {
+	return ApiEtfsAllocationRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ETFAllocation
+func (a *DefaultApiService) EtfsAllocationExecute(r ApiEtfsAllocationRequest) (ETFAllocation, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ETFAllocation
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EtfsAllocation")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/etf/allocation"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.symbol != nil {
+		localVarQueryParams.Add("symbol", parameterToString(*r.symbol, ""))
+	}
+	if r.isin != nil {
+		localVarQueryParams.Add("isin", parameterToString(*r.isin, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["api_key"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarQueryParams.Add("token", key)
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiEtfsSectorExposureRequest struct {
+	ctx        _context.Context
+	ApiService *DefaultApiService
+	symbol     *string
+	isin       *string
 }
 
 // ETF symbol.
@@ -5081,6 +5295,7 @@ func (r ApiEtfsSectorExposureRequest) Symbol(symbol string) ApiEtfsSectorExposur
 	r.symbol = &symbol
 	return r
 }
+
 // ETF isin.
 func (r ApiEtfsSectorExposureRequest) Isin(isin string) ApiEtfsSectorExposureRequest {
 	r.isin = &isin
@@ -5096,18 +5311,19 @@ EtfsSectorExposure ETFs Sector Exposure
 
 Get ETF sector exposure data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEtfsSectorExposureRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEtfsSectorExposureRequest
 */
 func (a *DefaultApiService) EtfsSectorExposure(ctx _context.Context) ApiEtfsSectorExposureRequest {
 	return ApiEtfsSectorExposureRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ETFsSectorExposure
+//
+//	@return ETFsSectorExposure
 func (a *DefaultApiService) EtfsSectorExposureExecute(r ApiEtfsSectorExposureRequest) (ETFsSectorExposure, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5204,10 +5420,9 @@ func (a *DefaultApiService) EtfsSectorExposureExecute(r ApiEtfsSectorExposureReq
 }
 
 type ApiFdaCommitteeMeetingCalendarRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiFdaCommitteeMeetingCalendarRequest) Execute() ([]FDAComitteeMeeting, *_nethttp.Response, error) {
 	return r.ApiService.FdaCommitteeMeetingCalendarExecute(r)
@@ -5218,18 +5433,19 @@ FdaCommitteeMeetingCalendar FDA Committee Meeting Calendar
 
 FDA's advisory committees are established to provide functions which support the agency's mission of protecting and promoting the public health, while meeting the requirements set forth in the Federal Advisory Committee Act. Committees are either mandated by statute or established at the discretion of the Department of Health and Human Services. Each committee is subject to renewal at two-year intervals unless the committee charter states otherwise.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFdaCommitteeMeetingCalendarRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFdaCommitteeMeetingCalendarRequest
 */
 func (a *DefaultApiService) FdaCommitteeMeetingCalendar(ctx _context.Context) ApiFdaCommitteeMeetingCalendarRequest {
 	return ApiFdaCommitteeMeetingCalendarRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []FDAComitteeMeeting
+//
+//	@return []FDAComitteeMeeting
 func (a *DefaultApiService) FdaCommitteeMeetingCalendarExecute(r ApiFdaCommitteeMeetingCalendarRequest) ([]FDAComitteeMeeting, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5320,14 +5536,14 @@ func (a *DefaultApiService) FdaCommitteeMeetingCalendarExecute(r ApiFdaCommittee
 }
 
 type ApiFilingsRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	symbol *string
-	cik *string
+	ctx          _context.Context
+	ApiService   *DefaultApiService
+	symbol       *string
+	cik          *string
 	accessNumber *string
-	form *string
-	from *string
-	to *string
+	form         *string
+	from         *string
+	to           *string
 }
 
 // Symbol. Leave &lt;code&gt;symbol&lt;/code&gt;,&lt;code&gt;cik&lt;/code&gt; and &lt;code&gt;accessNumber&lt;/code&gt; empty to list latest filings.
@@ -5335,26 +5551,31 @@ func (r ApiFilingsRequest) Symbol(symbol string) ApiFilingsRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // CIK.
 func (r ApiFilingsRequest) Cik(cik string) ApiFilingsRequest {
 	r.cik = &cik
 	return r
 }
+
 // Access number of a specific report you want to retrieve data from.
 func (r ApiFilingsRequest) AccessNumber(accessNumber string) ApiFilingsRequest {
 	r.accessNumber = &accessNumber
 	return r
 }
+
 // Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company.
 func (r ApiFilingsRequest) Form(form string) ApiFilingsRequest {
 	r.form = &form
 	return r
 }
+
 // From date: 2023-03-15.
 func (r ApiFilingsRequest) From(from string) ApiFilingsRequest {
 	r.from = &from
 	return r
 }
+
 // To date: 2023-03-16.
 func (r ApiFilingsRequest) To(to string) ApiFilingsRequest {
 	r.to = &to
@@ -5370,18 +5591,19 @@ Filings SEC Filings
 
 List company's filing. Limit to 250 documents at a time. This data is available for bulk download on <a href="https://www.kaggle.com/finnhub/sec-filings" target="_blank">Kaggle SEC Filings database</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFilingsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFilingsRequest
 */
 func (a *DefaultApiService) Filings(ctx _context.Context) ApiFilingsRequest {
 	return ApiFilingsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []Filing
+//
+//	@return []Filing
 func (a *DefaultApiService) FilingsExecute(r ApiFilingsRequest) ([]Filing, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5490,8 +5712,8 @@ func (a *DefaultApiService) FilingsExecute(r ApiFilingsRequest) ([]Filing, *_net
 }
 
 type ApiFilingsSentimentRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx          _context.Context
+	ApiService   *DefaultApiService
 	accessNumber *string
 }
 
@@ -5510,18 +5732,19 @@ FilingsSentiment SEC Sentiment Analysis
 
 Get sentiment analysis of 10-K and 10-Q filings from SEC. An abnormal increase in the number of positive/negative words in filings can signal a significant change in the company's stock price in the upcoming 4 quarters. We make use of <a href= "https://sraf.nd.edu/textual-analysis/resources/" target="_blank">Loughran and McDonald Sentiment Word Lists</a> to calculate the sentiment for each filing.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFilingsSentimentRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFilingsSentimentRequest
 */
 func (a *DefaultApiService) FilingsSentiment(ctx _context.Context) ApiFilingsSentimentRequest {
 	return ApiFilingsSentimentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SECSentimentAnalysis
+//
+//	@return SECSentimentAnalysis
 func (a *DefaultApiService) FilingsSentimentExecute(r ApiFilingsSentimentRequest) (SECSentimentAnalysis, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5616,11 +5839,11 @@ func (a *DefaultApiService) FilingsSentimentExecute(r ApiFilingsSentimentRequest
 }
 
 type ApiFinancialsRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	symbol *string
-	statement *string
-	freq *string
+	ctx         _context.Context
+	ApiService  *DefaultApiService
+	symbol      *string
+	statement   *string
+	freq        *string
 	preliminary *string
 }
 
@@ -5629,16 +5852,19 @@ func (r ApiFinancialsRequest) Symbol(symbol string) ApiFinancialsRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Statement can take 1 of these values &lt;code&gt;bs, ic, cf&lt;/code&gt; for Balance Sheet, Income Statement, Cash Flow respectively.
 func (r ApiFinancialsRequest) Statement(statement string) ApiFinancialsRequest {
 	r.statement = &statement
 	return r
 }
+
 // Frequency can take 1 of these values &lt;code&gt;annual, quarterly, ttm, ytd&lt;/code&gt;.  TTM (Trailing Twelve Months) option is available for Income Statement and Cash Flow. YTD (Year To Date) option is only available for Cash Flow.
 func (r ApiFinancialsRequest) Freq(freq string) ApiFinancialsRequest {
 	r.freq = &freq
 	return r
 }
+
 // If set to &lt;code&gt;true&lt;/code&gt;, it will return Preliminary financial statements for the latest period which are usually available within an hour of the earnings announcement if finalized data is not available yet. This preliminary data is currently available for US companies and reserved for Enterprise users only. You will see &lt;code&gt;\&quot;preliminary\&quot;: true&lt;/code&gt; in the data if that period is using preliminary data.
 func (r ApiFinancialsRequest) Preliminary(preliminary string) ApiFinancialsRequest {
 	r.preliminary = &preliminary
@@ -5654,18 +5880,19 @@ Financials Financial Statements
 
 <p>Get standardized balance sheet, income statement and cash flow for global companies going back 30+ years. Data is sourced from original filings most of which made available through <a href="#filings">SEC Filings</a> and <a href="#international-filings">International Filings</a> endpoints.</p><p>Set <code>preliminary</code> param to true for faster updates for US companies.</p><p><i>Wondering why our standardized data is different from Bloomberg, Reuters, Factset, S&P or Yahoo Finance ? Check out our <a href="/faq">FAQ page</a> to learn more</i></p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFinancialsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFinancialsRequest
 */
 func (a *DefaultApiService) Financials(ctx _context.Context) ApiFinancialsRequest {
 	return ApiFinancialsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FinancialStatements
+//
+//	@return FinancialStatements
 func (a *DefaultApiService) FinancialsExecute(r ApiFinancialsRequest) (FinancialStatements, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5771,14 +5998,14 @@ func (a *DefaultApiService) FinancialsExecute(r ApiFinancialsRequest) (Financial
 }
 
 type ApiFinancialsReportedRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	symbol *string
-	cik *string
+	ctx          _context.Context
+	ApiService   *DefaultApiService
+	symbol       *string
+	cik          *string
 	accessNumber *string
-	freq *string
-	from *string
-	to *string
+	freq         *string
+	from         *string
+	to           *string
 }
 
 // Symbol.
@@ -5786,26 +6013,31 @@ func (r ApiFinancialsReportedRequest) Symbol(symbol string) ApiFinancialsReporte
 	r.symbol = &symbol
 	return r
 }
+
 // CIK.
 func (r ApiFinancialsReportedRequest) Cik(cik string) ApiFinancialsReportedRequest {
 	r.cik = &cik
 	return r
 }
+
 // Access number of a specific report you want to retrieve financials from.
 func (r ApiFinancialsReportedRequest) AccessNumber(accessNumber string) ApiFinancialsReportedRequest {
 	r.accessNumber = &accessNumber
 	return r
 }
+
 // Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;.
 func (r ApiFinancialsReportedRequest) Freq(freq string) ApiFinancialsReportedRequest {
 	r.freq = &freq
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
 func (r ApiFinancialsReportedRequest) From(from string) ApiFinancialsReportedRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
 func (r ApiFinancialsReportedRequest) To(to string) ApiFinancialsReportedRequest {
 	r.to = &to
@@ -5821,18 +6053,19 @@ FinancialsReported Financials As Reported
 
 Get financials as reported. This data is available for bulk download on <a href="https://www.kaggle.com/finnhub/reported-financials" target="_blank">Kaggle SEC Financials database</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFinancialsReportedRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFinancialsReportedRequest
 */
 func (a *DefaultApiService) FinancialsReported(ctx _context.Context) ApiFinancialsReportedRequest {
 	return ApiFinancialsReportedRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FinancialsAsReported
+//
+//	@return FinancialsAsReported
 func (a *DefaultApiService) FinancialsReportedExecute(r ApiFinancialsReportedRequest) (FinancialsAsReported, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -5941,12 +6174,12 @@ func (a *DefaultApiService) FinancialsReportedExecute(r ApiFinancialsReportedReq
 }
 
 type ApiForexCandlesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 	resolution *string
-	from *int64
-	to *int64
+	from       *int64
+	to         *int64
 }
 
 // Use symbol returned in &lt;code&gt;/forex/symbol&lt;/code&gt; endpoint for this field.
@@ -5954,16 +6187,19 @@ func (r ApiForexCandlesRequest) Symbol(symbol string) ApiForexCandlesRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiForexCandlesRequest) Resolution(resolution string) ApiForexCandlesRequest {
 	r.resolution = &resolution
 	return r
 }
+
 // UNIX timestamp. Interval initial value.
 func (r ApiForexCandlesRequest) From(from int64) ApiForexCandlesRequest {
 	r.from = &from
 	return r
 }
+
 // UNIX timestamp. Interval end value.
 func (r ApiForexCandlesRequest) To(to int64) ApiForexCandlesRequest {
 	r.to = &to
@@ -5979,18 +6215,19 @@ ForexCandles Forex Candles
 
 Get candlestick data for forex symbols.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiForexCandlesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiForexCandlesRequest
 */
 func (a *DefaultApiService) ForexCandles(ctx _context.Context) ApiForexCandlesRequest {
 	return ApiForexCandlesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ForexCandles
+//
+//	@return ForexCandles
 func (a *DefaultApiService) ForexCandlesExecute(r ApiForexCandlesRequest) (ForexCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6097,10 +6334,9 @@ func (a *DefaultApiService) ForexCandlesExecute(r ApiForexCandlesRequest) (Forex
 }
 
 type ApiForexExchangesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiForexExchangesRequest) Execute() ([]string, *_nethttp.Response, error) {
 	return r.ApiService.ForexExchangesExecute(r)
@@ -6111,18 +6347,19 @@ ForexExchanges Forex Exchanges
 
 List supported forex exchanges
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiForexExchangesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiForexExchangesRequest
 */
 func (a *DefaultApiService) ForexExchanges(ctx _context.Context) ApiForexExchangesRequest {
 	return ApiForexExchangesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []string
+//
+//	@return []string
 func (a *DefaultApiService) ForexExchangesExecute(r ApiForexExchangesRequest) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6213,10 +6450,10 @@ func (a *DefaultApiService) ForexExchangesExecute(r ApiForexExchangesRequest) ([
 }
 
 type ApiForexRatesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	base *string
-	date *string
+	base       *string
+	date       *string
 }
 
 // Base currency. Default to EUR.
@@ -6224,6 +6461,7 @@ func (r ApiForexRatesRequest) Base(base string) ApiForexRatesRequest {
 	r.base = &base
 	return r
 }
+
 // Date. Leave blank to get the latest data.
 func (r ApiForexRatesRequest) Date(date string) ApiForexRatesRequest {
 	r.date = &date
@@ -6239,18 +6477,19 @@ ForexRates Forex rates
 
 Get rates for all forex pairs. Ideal for currency conversion
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiForexRatesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiForexRatesRequest
 */
 func (a *DefaultApiService) ForexRates(ctx _context.Context) ApiForexRatesRequest {
 	return ApiForexRatesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Forexrates
+//
+//	@return Forexrates
 func (a *DefaultApiService) ForexRatesExecute(r ApiForexRatesRequest) (Forexrates, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6347,9 +6586,9 @@ func (a *DefaultApiService) ForexRatesExecute(r ApiForexRatesRequest) (Forexrate
 }
 
 type ApiForexSymbolsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	exchange *string
+	exchange   *string
 }
 
 // Exchange you want to get the list of symbols from.
@@ -6367,18 +6606,19 @@ ForexSymbols Forex Symbol
 
 List supported forex symbols.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiForexSymbolsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiForexSymbolsRequest
 */
 func (a *DefaultApiService) ForexSymbols(ctx _context.Context) ApiForexSymbolsRequest {
 	return ApiForexSymbolsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []ForexSymbol
+//
+//	@return []ForexSymbol
 func (a *DefaultApiService) ForexSymbolsExecute(r ApiForexSymbolsRequest) ([]ForexSymbol, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6473,10 +6713,10 @@ func (a *DefaultApiService) ForexSymbolsExecute(r ApiForexSymbolsRequest) ([]For
 }
 
 type ApiFundOwnershipRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	limit *int64
+	symbol     *string
+	limit      *int64
 }
 
 // Symbol of the company: AAPL.
@@ -6484,6 +6724,7 @@ func (r ApiFundOwnershipRequest) Symbol(symbol string) ApiFundOwnershipRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Limit number of results. Leave empty to get the full list.
 func (r ApiFundOwnershipRequest) Limit(limit int64) ApiFundOwnershipRequest {
 	r.limit = &limit
@@ -6499,18 +6740,19 @@ FundOwnership Fund Ownership
 
 Get a full list fund and institutional investors of a company in descending order of the number of shares held. Data is sourced from <code>13F form</code>, <code>Schedule 13D</code> and <code>13G</code> for US market, <code>UK Share Register</code> for UK market, <code>SEDI</code> for Canadian market and equivalent filings for other international markets.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFundOwnershipRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFundOwnershipRequest
 */
 func (a *DefaultApiService) FundOwnership(ctx _context.Context) ApiFundOwnershipRequest {
 	return ApiFundOwnershipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FundOwnership
+//
+//	@return FundOwnership
 func (a *DefaultApiService) FundOwnershipExecute(r ApiFundOwnershipRequest) (FundOwnership, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6608,11 +6850,11 @@ func (a *DefaultApiService) FundOwnershipExecute(r ApiFundOwnershipRequest) (Fun
 }
 
 type ApiHistoricalEmployeeCountRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Company symbol.
@@ -6620,11 +6862,13 @@ func (r ApiHistoricalEmployeeCountRequest) Symbol(symbol string) ApiHistoricalEm
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiHistoricalEmployeeCountRequest) From(from string) ApiHistoricalEmployeeCountRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiHistoricalEmployeeCountRequest) To(to string) ApiHistoricalEmployeeCountRequest {
 	r.to = &to
@@ -6640,18 +6884,19 @@ HistoricalEmployeeCount Historical Employee Count
 
 Get historical employee count for global companies.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiHistoricalEmployeeCountRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiHistoricalEmployeeCountRequest
 */
 func (a *DefaultApiService) HistoricalEmployeeCount(ctx _context.Context) ApiHistoricalEmployeeCountRequest {
 	return ApiHistoricalEmployeeCountRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return HistoricalEmployeeCount
+//
+//	@return HistoricalEmployeeCount
 func (a *DefaultApiService) HistoricalEmployeeCountExecute(r ApiHistoricalEmployeeCountRequest) (HistoricalEmployeeCount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6754,11 +6999,11 @@ func (a *DefaultApiService) HistoricalEmployeeCountExecute(r ApiHistoricalEmploy
 }
 
 type ApiHistoricalMarketCapRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Company symbol.
@@ -6766,11 +7011,13 @@ func (r ApiHistoricalMarketCapRequest) Symbol(symbol string) ApiHistoricalMarket
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiHistoricalMarketCapRequest) From(from string) ApiHistoricalMarketCapRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiHistoricalMarketCapRequest) To(to string) ApiHistoricalMarketCapRequest {
 	r.to = &to
@@ -6786,18 +7033,19 @@ HistoricalMarketCap Historical Market Cap
 
 Get historical market cap data for global companies.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiHistoricalMarketCapRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiHistoricalMarketCapRequest
 */
 func (a *DefaultApiService) HistoricalMarketCap(ctx _context.Context) ApiHistoricalMarketCapRequest {
 	return ApiHistoricalMarketCapRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return HistoricalMarketCapData
+//
+//	@return HistoricalMarketCapData
 func (a *DefaultApiService) HistoricalMarketCapExecute(r ApiHistoricalMarketCapRequest) (HistoricalMarketCapData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -6900,9 +7148,9 @@ func (a *DefaultApiService) HistoricalMarketCapExecute(r ApiHistoricalMarketCapR
 }
 
 type ApiIndicesConstituentsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // symbol
@@ -6920,18 +7168,19 @@ IndicesConstituents Indices Constituents
 
 Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href="/api/v1/index/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiIndicesConstituentsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiIndicesConstituentsRequest
 */
 func (a *DefaultApiService) IndicesConstituents(ctx _context.Context) ApiIndicesConstituentsRequest {
 	return ApiIndicesConstituentsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return IndicesConstituents
+//
+//	@return IndicesConstituents
 func (a *DefaultApiService) IndicesConstituentsExecute(r ApiIndicesConstituentsRequest) (IndicesConstituents, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7026,9 +7275,9 @@ func (a *DefaultApiService) IndicesConstituentsExecute(r ApiIndicesConstituentsR
 }
 
 type ApiIndicesHistoricalConstituentsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // symbol
@@ -7046,18 +7295,19 @@ IndicesHistoricalConstituents Indices Historical Constituents
 
 Get full history of index's constituents including symbols and dates of joining and leaving the Index. A list of supported indices for this endpoint can be found <a href="/api/v1/index/historical-list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiIndicesHistoricalConstituentsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiIndicesHistoricalConstituentsRequest
 */
 func (a *DefaultApiService) IndicesHistoricalConstituents(ctx _context.Context) ApiIndicesHistoricalConstituentsRequest {
 	return ApiIndicesHistoricalConstituentsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return IndicesHistoricalConstituents
+//
+//	@return IndicesHistoricalConstituents
 func (a *DefaultApiService) IndicesHistoricalConstituentsExecute(r ApiIndicesHistoricalConstituentsRequest) (IndicesHistoricalConstituents, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7152,11 +7402,11 @@ func (a *DefaultApiService) IndicesHistoricalConstituentsExecute(r ApiIndicesHis
 }
 
 type ApiInsiderSentimentRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol of the company: AAPL.
@@ -7164,11 +7414,13 @@ func (r ApiInsiderSentimentRequest) Symbol(symbol string) ApiInsiderSentimentReq
 	r.symbol = &symbol
 	return r
 }
+
 // From date: 2020-03-15.
 func (r ApiInsiderSentimentRequest) From(from string) ApiInsiderSentimentRequest {
 	r.from = &from
 	return r
 }
+
 // To date: 2020-03-16.
 func (r ApiInsiderSentimentRequest) To(to string) ApiInsiderSentimentRequest {
 	r.to = &to
@@ -7184,18 +7436,19 @@ InsiderSentiment Insider Sentiment
 
 Get insider sentiment data for US companies calculated using method discussed <a href="https://medium.com/@stock-api/finnhub-insiders-sentiment-analysis-cc43f9f64b3a" target="_blank">here</a>. The MSPR ranges from -100 for the most negative to 100 for the most positive which can signal price changes in the coming 30-90 days.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInsiderSentimentRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInsiderSentimentRequest
 */
 func (a *DefaultApiService) InsiderSentiment(ctx _context.Context) ApiInsiderSentimentRequest {
 	return ApiInsiderSentimentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InsiderSentiments
+//
+//	@return InsiderSentiments
 func (a *DefaultApiService) InsiderSentimentExecute(r ApiInsiderSentimentRequest) (InsiderSentiments, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7298,11 +7551,11 @@ func (a *DefaultApiService) InsiderSentimentExecute(r ApiInsiderSentimentRequest
 }
 
 type ApiInsiderTransactionsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
@@ -7310,11 +7563,13 @@ func (r ApiInsiderTransactionsRequest) Symbol(symbol string) ApiInsiderTransacti
 	r.symbol = &symbol
 	return r
 }
+
 // From date: 2020-03-15.
 func (r ApiInsiderTransactionsRequest) From(from string) ApiInsiderTransactionsRequest {
 	r.from = &from
 	return r
 }
+
 // To date: 2020-03-16.
 func (r ApiInsiderTransactionsRequest) To(to string) ApiInsiderTransactionsRequest {
 	r.to = &to
@@ -7330,18 +7585,19 @@ InsiderTransactions Insider Transactions
 
 Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, UK, Canada, Australia, India, and all major EU markets. Limit to 100 transactions per API call.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInsiderTransactionsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInsiderTransactionsRequest
 */
 func (a *DefaultApiService) InsiderTransactions(ctx _context.Context) ApiInsiderTransactionsRequest {
 	return ApiInsiderTransactionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InsiderTransactions
+//
+//	@return InsiderTransactions
 func (a *DefaultApiService) InsiderTransactionsExecute(r ApiInsiderTransactionsRequest) (InsiderTransactions, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7442,12 +7698,12 @@ func (a *DefaultApiService) InsiderTransactionsExecute(r ApiInsiderTransactionsR
 }
 
 type ApiInstitutionalOwnershipRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	cusip *string
-	from *string
-	to *string
+	symbol     *string
+	cusip      *string
+	from       *string
+	to         *string
 }
 
 // Filter by symbol.
@@ -7455,16 +7711,19 @@ func (r ApiInstitutionalOwnershipRequest) Symbol(symbol string) ApiInstitutional
 	r.symbol = &symbol
 	return r
 }
+
 // Filter by CUSIP.
 func (r ApiInstitutionalOwnershipRequest) Cusip(cusip string) ApiInstitutionalOwnershipRequest {
 	r.cusip = &cusip
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiInstitutionalOwnershipRequest) From(from string) ApiInstitutionalOwnershipRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiInstitutionalOwnershipRequest) To(to string) ApiInstitutionalOwnershipRequest {
 	r.to = &to
@@ -7480,18 +7739,19 @@ InstitutionalOwnership Institutional Ownership
 
 Get a list institutional investors' positions for a particular stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInstitutionalOwnershipRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInstitutionalOwnershipRequest
 */
 func (a *DefaultApiService) InstitutionalOwnership(ctx _context.Context) ApiInstitutionalOwnershipRequest {
 	return ApiInstitutionalOwnershipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InstitutionalOwnership
+//
+//	@return InstitutionalOwnership
 func (a *DefaultApiService) InstitutionalOwnershipExecute(r ApiInstitutionalOwnershipRequest) (InstitutionalOwnership, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7598,11 +7858,11 @@ func (a *DefaultApiService) InstitutionalOwnershipExecute(r ApiInstitutionalOwne
 }
 
 type ApiInstitutionalPortfolioRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	cik *string
-	from *string
-	to *string
+	cik        *string
+	from       *string
+	to         *string
 }
 
 // Fund&#39;s CIK.
@@ -7610,11 +7870,13 @@ func (r ApiInstitutionalPortfolioRequest) Cik(cik string) ApiInstitutionalPortfo
 	r.cik = &cik
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiInstitutionalPortfolioRequest) From(from string) ApiInstitutionalPortfolioRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiInstitutionalPortfolioRequest) To(to string) ApiInstitutionalPortfolioRequest {
 	r.to = &to
@@ -7630,18 +7892,19 @@ InstitutionalPortfolio Institutional Portfolio
 
 Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time. You can get a list of supported CIK <a href="/api/v1/institutional/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInstitutionalPortfolioRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInstitutionalPortfolioRequest
 */
 func (a *DefaultApiService) InstitutionalPortfolio(ctx _context.Context) ApiInstitutionalPortfolioRequest {
 	return ApiInstitutionalPortfolioRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InstitutionalPortfolio
+//
+//	@return InstitutionalPortfolio
 func (a *DefaultApiService) InstitutionalPortfolioExecute(r ApiInstitutionalPortfolioRequest) (InstitutionalPortfolio, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7744,9 +8007,9 @@ func (a *DefaultApiService) InstitutionalPortfolioExecute(r ApiInstitutionalPort
 }
 
 type ApiInstitutionalProfileRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	cik *string
+	cik        *string
 }
 
 // Filter by CIK. Leave blank to get the full list.
@@ -7764,18 +8027,19 @@ InstitutionalProfile Institutional Profile
 
 Get a list of well-known institutional investors. Currently support 60+ profiles.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInstitutionalProfileRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInstitutionalProfileRequest
 */
 func (a *DefaultApiService) InstitutionalProfile(ctx _context.Context) ApiInstitutionalProfileRequest {
 	return ApiInstitutionalProfileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InstitutionalProfile
+//
+//	@return InstitutionalProfile
 func (a *DefaultApiService) InstitutionalProfileExecute(r ApiInstitutionalProfileRequest) (InstitutionalProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -7869,12 +8133,12 @@ func (a *DefaultApiService) InstitutionalProfileExecute(r ApiInstitutionalProfil
 }
 
 type ApiInternationalFilingsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	country *string
-	from *string
-	to *string
+	symbol     *string
+	country    *string
+	from       *string
+	to         *string
 }
 
 // Symbol. Leave empty to list latest filings.
@@ -7882,16 +8146,19 @@ func (r ApiInternationalFilingsRequest) Symbol(symbol string) ApiInternationalFi
 	r.symbol = &symbol
 	return r
 }
+
 // Filter by country using country&#39;s 2-letter code.
 func (r ApiInternationalFilingsRequest) Country(country string) ApiInternationalFilingsRequest {
 	r.country = &country
 	return r
 }
+
 // From date: 2023-01-15.
 func (r ApiInternationalFilingsRequest) From(from string) ApiInternationalFilingsRequest {
 	r.from = &from
 	return r
 }
+
 // To date: 2023-12-16.
 func (r ApiInternationalFilingsRequest) To(to string) ApiInternationalFilingsRequest {
 	r.to = &to
@@ -7907,18 +8174,19 @@ InternationalFilings International Filings
 
 List filings for international companies. Limit to 500 documents at a time. These are the documents we use to source our fundamental data. Enterprise clients who need access to the full filings for global markets should contact us for the access.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInternationalFilingsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInternationalFilingsRequest
 */
 func (a *DefaultApiService) InternationalFilings(ctx _context.Context) ApiInternationalFilingsRequest {
 	return ApiInternationalFilingsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []InternationalFiling
+//
+//	@return []InternationalFiling
 func (a *DefaultApiService) InternationalFilingsExecute(r ApiInternationalFilingsRequest) ([]InternationalFiling, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8021,9 +8289,9 @@ func (a *DefaultApiService) InternationalFilingsExecute(r ApiInternationalFiling
 }
 
 type ApiInvestmentThemesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	theme *string
+	theme      *string
 }
 
 // Investment theme. A full list of themes supported can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt;.
@@ -8041,18 +8309,19 @@ InvestmentThemes Investment Themes (Thematic Investing)
 
 <p>Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a collection of companies involved in certain areas that you predict will generate above-market returns over the long term. Themes can be based on a concept such as ageing populations or a sub-sector such as robotics, and drones. Thematic investing focuses on predicted long-term trends rather than specific companies or sectors, enabling investors to access structural, one-off shifts that can change an entire industry.</p><p>This endpoint will help you get portfolios of different investment themes that are changing our life and are the way of the future.</p><p>A full list of themes supported can be found <a target="_blank" href="https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing">here</a>. The theme coverage and portfolios are updated bi-weekly by our analysts. Our approach excludes penny, super-small cap and illiquid stocks.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInvestmentThemesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInvestmentThemesRequest
 */
 func (a *DefaultApiService) InvestmentThemes(ctx _context.Context) ApiInvestmentThemesRequest {
 	return ApiInvestmentThemesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return InvestmentThemes
+//
+//	@return InvestmentThemes
 func (a *DefaultApiService) InvestmentThemesExecute(r ApiInvestmentThemesRequest) (InvestmentThemes, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8147,10 +8416,10 @@ func (a *DefaultApiService) InvestmentThemesExecute(r ApiInvestmentThemesRequest
 }
 
 type ApiIpoCalendarRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	from *string
-	to *string
+	from       *string
+	to         *string
 }
 
 // From date: 2020-03-15.
@@ -8158,6 +8427,7 @@ func (r ApiIpoCalendarRequest) From(from string) ApiIpoCalendarRequest {
 	r.from = &from
 	return r
 }
+
 // To date: 2020-03-16.
 func (r ApiIpoCalendarRequest) To(to string) ApiIpoCalendarRequest {
 	r.to = &to
@@ -8173,18 +8443,19 @@ IpoCalendar IPO Calendar
 
 Get recent and upcoming IPO.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiIpoCalendarRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiIpoCalendarRequest
 */
 func (a *DefaultApiService) IpoCalendar(ctx _context.Context) ApiIpoCalendarRequest {
 	return ApiIpoCalendarRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return IPOCalendar
+//
+//	@return IPOCalendar
 func (a *DefaultApiService) IpoCalendarExecute(r ApiIpoCalendarRequest) (IPOCalendar, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8283,10 +8554,10 @@ func (a *DefaultApiService) IpoCalendarExecute(r ApiIpoCalendarRequest) (IPOCale
 }
 
 type ApiIsinChangeRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	from *string
-	to *string
+	from       *string
+	to         *string
 }
 
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -8294,6 +8565,7 @@ func (r ApiIsinChangeRequest) From(from string) ApiIsinChangeRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiIsinChangeRequest) To(to string) ApiIsinChangeRequest {
 	r.to = &to
@@ -8309,18 +8581,19 @@ IsinChange ISIN Change
 
 Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a time.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiIsinChangeRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiIsinChangeRequest
 */
 func (a *DefaultApiService) IsinChange(ctx _context.Context) ApiIsinChangeRequest {
 	return ApiIsinChangeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return IsinChange
+//
+//	@return IsinChange
 func (a *DefaultApiService) IsinChangeExecute(r ApiIsinChangeRequest) (IsinChange, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8419,9 +8692,9 @@ func (a *DefaultApiService) IsinChangeExecute(r ApiIsinChangeRequest) (IsinChang
 }
 
 type ApiMarketHolidayRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	exchange *string
+	exchange   *string
 }
 
 // Exchange code.
@@ -8439,18 +8712,19 @@ MarketHoliday Market Holiday
 
 Get a list of holidays for global exchanges.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMarketHolidayRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMarketHolidayRequest
 */
 func (a *DefaultApiService) MarketHoliday(ctx _context.Context) ApiMarketHolidayRequest {
 	return ApiMarketHolidayRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MarketHoliday
+//
+//	@return MarketHoliday
 func (a *DefaultApiService) MarketHolidayExecute(r ApiMarketHolidayRequest) (MarketHoliday, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8545,10 +8819,10 @@ func (a *DefaultApiService) MarketHolidayExecute(r ApiMarketHolidayRequest) (Mar
 }
 
 type ApiMarketNewsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	category *string
-	minId *int64
+	category   *string
+	minId      *int64
 }
 
 // This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;.
@@ -8556,6 +8830,7 @@ func (r ApiMarketNewsRequest) Category(category string) ApiMarketNewsRequest {
 	r.category = &category
 	return r
 }
+
 // Use this field to get only news after this ID. Default to 0
 func (r ApiMarketNewsRequest) MinId(minId int64) ApiMarketNewsRequest {
 	r.minId = &minId
@@ -8571,18 +8846,19 @@ MarketNews Market News
 
 Get latest market news.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMarketNewsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMarketNewsRequest
 */
 func (a *DefaultApiService) MarketNews(ctx _context.Context) ApiMarketNewsRequest {
 	return ApiMarketNewsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []MarketNews
+//
+//	@return []MarketNews
 func (a *DefaultApiService) MarketNewsExecute(r ApiMarketNewsRequest) ([]MarketNews, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8680,9 +8956,9 @@ func (a *DefaultApiService) MarketNewsExecute(r ApiMarketNewsRequest) ([]MarketN
 }
 
 type ApiMarketStatusRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	exchange *string
+	exchange   *string
 }
 
 // Exchange code.
@@ -8700,18 +8976,19 @@ MarketStatus Market Status
 
 Get current market status for global exchanges (whether exchanges are open or close).
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMarketStatusRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMarketStatusRequest
 */
 func (a *DefaultApiService) MarketStatus(ctx _context.Context) ApiMarketStatusRequest {
 	return ApiMarketStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MarketStatus
+//
+//	@return MarketStatus
 func (a *DefaultApiService) MarketStatusExecute(r ApiMarketStatusRequest) (MarketStatus, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8806,10 +9083,10 @@ func (a *DefaultApiService) MarketStatusExecute(r ApiMarketStatusRequest) (Marke
 }
 
 type ApiMutualFundCountryExposureRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
+	symbol     *string
+	isin       *string
 }
 
 // Symbol.
@@ -8817,6 +9094,7 @@ func (r ApiMutualFundCountryExposureRequest) Symbol(symbol string) ApiMutualFund
 	r.symbol = &symbol
 	return r
 }
+
 // Fund&#39;s isin.
 func (r ApiMutualFundCountryExposureRequest) Isin(isin string) ApiMutualFundCountryExposureRequest {
 	r.isin = &isin
@@ -8832,18 +9110,19 @@ MutualFundCountryExposure Mutual Funds Country Exposure
 
 Get Mutual Funds country exposure data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMutualFundCountryExposureRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMutualFundCountryExposureRequest
 */
 func (a *DefaultApiService) MutualFundCountryExposure(ctx _context.Context) ApiMutualFundCountryExposureRequest {
 	return ApiMutualFundCountryExposureRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MutualFundCountryExposure
+//
+//	@return MutualFundCountryExposure
 func (a *DefaultApiService) MutualFundCountryExposureExecute(r ApiMutualFundCountryExposureRequest) (MutualFundCountryExposure, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -8940,9 +9219,9 @@ func (a *DefaultApiService) MutualFundCountryExposureExecute(r ApiMutualFundCoun
 }
 
 type ApiMutualFundEetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	isin *string
+	isin       *string
 }
 
 // ISIN.
@@ -8960,18 +9239,19 @@ MutualFundEet Mutual Funds EET
 
 Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMutualFundEetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMutualFundEetRequest
 */
 func (a *DefaultApiService) MutualFundEet(ctx _context.Context) ApiMutualFundEetRequest {
 	return ApiMutualFundEetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MutualFundEet
+//
+//	@return MutualFundEet
 func (a *DefaultApiService) MutualFundEetExecute(r ApiMutualFundEetRequest) (MutualFundEet, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9066,9 +9346,9 @@ func (a *DefaultApiService) MutualFundEetExecute(r ApiMutualFundEetRequest) (Mut
 }
 
 type ApiMutualFundEetPaiRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	isin *string
+	isin       *string
 }
 
 // ISIN.
@@ -9086,18 +9366,19 @@ MutualFundEetPai Mutual Funds EET PAI
 
 Get EET PAI data for EU funds.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMutualFundEetPaiRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMutualFundEetPaiRequest
 */
 func (a *DefaultApiService) MutualFundEetPai(ctx _context.Context) ApiMutualFundEetPaiRequest {
 	return ApiMutualFundEetPaiRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MutualFundEetPai
+//
+//	@return MutualFundEetPai
 func (a *DefaultApiService) MutualFundEetPaiExecute(r ApiMutualFundEetPaiRequest) (MutualFundEetPai, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9192,11 +9473,11 @@ func (a *DefaultApiService) MutualFundEetPaiExecute(r ApiMutualFundEetPaiRequest
 }
 
 type ApiMutualFundHoldingsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
-	skip *int64
+	symbol     *string
+	isin       *string
+	skip       *int64
 }
 
 // Fund&#39;s symbol.
@@ -9204,11 +9485,13 @@ func (r ApiMutualFundHoldingsRequest) Symbol(symbol string) ApiMutualFundHolding
 	r.symbol = &symbol
 	return r
 }
+
 // Fund&#39;s isin.
 func (r ApiMutualFundHoldingsRequest) Isin(isin string) ApiMutualFundHoldingsRequest {
 	r.isin = &isin
 	return r
 }
+
 // Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set.
 func (r ApiMutualFundHoldingsRequest) Skip(skip int64) ApiMutualFundHoldingsRequest {
 	r.skip = &skip
@@ -9224,18 +9507,19 @@ MutualFundHoldings Mutual Funds Holdings
 
 Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href="/api/v1/mutual-fund/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMutualFundHoldingsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMutualFundHoldingsRequest
 */
 func (a *DefaultApiService) MutualFundHoldings(ctx _context.Context) ApiMutualFundHoldingsRequest {
 	return ApiMutualFundHoldingsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MutualFundHoldings
+//
+//	@return MutualFundHoldings
 func (a *DefaultApiService) MutualFundHoldingsExecute(r ApiMutualFundHoldingsRequest) (MutualFundHoldings, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9335,10 +9619,10 @@ func (a *DefaultApiService) MutualFundHoldingsExecute(r ApiMutualFundHoldingsReq
 }
 
 type ApiMutualFundProfileRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
+	symbol     *string
+	isin       *string
 }
 
 // Fund&#39;s symbol.
@@ -9346,6 +9630,7 @@ func (r ApiMutualFundProfileRequest) Symbol(symbol string) ApiMutualFundProfileR
 	r.symbol = &symbol
 	return r
 }
+
 // Fund&#39;s isin.
 func (r ApiMutualFundProfileRequest) Isin(isin string) ApiMutualFundProfileRequest {
 	r.isin = &isin
@@ -9361,18 +9646,19 @@ MutualFundProfile Mutual Funds Profile
 
 Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href="/api/v1/mutual-fund/list?token=" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMutualFundProfileRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMutualFundProfileRequest
 */
 func (a *DefaultApiService) MutualFundProfile(ctx _context.Context) ApiMutualFundProfileRequest {
 	return ApiMutualFundProfileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MutualFundProfile
+//
+//	@return MutualFundProfile
 func (a *DefaultApiService) MutualFundProfileExecute(r ApiMutualFundProfileRequest) (MutualFundProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9469,10 +9755,10 @@ func (a *DefaultApiService) MutualFundProfileExecute(r ApiMutualFundProfileReque
 }
 
 type ApiMutualFundSectorExposureRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	isin *string
+	symbol     *string
+	isin       *string
 }
 
 // Mutual Fund symbol.
@@ -9480,6 +9766,7 @@ func (r ApiMutualFundSectorExposureRequest) Symbol(symbol string) ApiMutualFundS
 	r.symbol = &symbol
 	return r
 }
+
 // Fund&#39;s isin.
 func (r ApiMutualFundSectorExposureRequest) Isin(isin string) ApiMutualFundSectorExposureRequest {
 	r.isin = &isin
@@ -9495,18 +9782,19 @@ MutualFundSectorExposure Mutual Funds Sector Exposure
 
 Get Mutual Funds sector exposure data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMutualFundSectorExposureRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMutualFundSectorExposureRequest
 */
 func (a *DefaultApiService) MutualFundSectorExposure(ctx _context.Context) ApiMutualFundSectorExposureRequest {
 	return ApiMutualFundSectorExposureRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MutualFundSectorExposure
+//
+//	@return MutualFundSectorExposure
 func (a *DefaultApiService) MutualFundSectorExposureExecute(r ApiMutualFundSectorExposureRequest) (MutualFundSectorExposure, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9603,9 +9891,9 @@ func (a *DefaultApiService) MutualFundSectorExposureExecute(r ApiMutualFundSecto
 }
 
 type ApiNewsSentimentRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Company symbol.
@@ -9623,18 +9911,19 @@ NewsSentiment News Sentiment
 
 Get company's news sentiment and statistics. This endpoint is only available for US companies.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiNewsSentimentRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiNewsSentimentRequest
 */
 func (a *DefaultApiService) NewsSentiment(ctx _context.Context) ApiNewsSentimentRequest {
 	return ApiNewsSentimentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NewsSentiment
+//
+//	@return NewsSentiment
 func (a *DefaultApiService) NewsSentimentExecute(r ApiNewsSentimentRequest) (NewsSentiment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9729,11 +10018,11 @@ func (a *DefaultApiService) NewsSentimentExecute(r ApiNewsSentimentRequest) (New
 }
 
 type ApiNewsroomRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Company symbol.
@@ -9741,11 +10030,13 @@ func (r ApiNewsroomRequest) Symbol(symbol string) ApiNewsroomRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // From time: 2025-01-01.
 func (r ApiNewsroomRequest) From(from string) ApiNewsroomRequest {
 	r.from = &from
 	return r
 }
+
 // To time: 2026-01-05.
 func (r ApiNewsroomRequest) To(to string) ApiNewsroomRequest {
 	r.to = &to
@@ -9761,18 +10052,19 @@ Newsroom Newsroom
 
 <p>Get latest articles posted directly on the companies' newsroom and investor relations page. Newsroom API along with the Press Releases API provide a comprehensive text-based dataset directly from the company. We currently cover 1,500 US Companies with this dataset.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiNewsroomRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiNewsroomRequest
 */
 func (a *DefaultApiService) Newsroom(ctx _context.Context) ApiNewsroomRequest {
 	return ApiNewsroomRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Newsroom
+//
+//	@return Newsroom
 func (a *DefaultApiService) NewsroomExecute(r ApiNewsroomRequest) (Newsroom, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -9873,10 +10165,10 @@ func (a *DefaultApiService) NewsroomExecute(r ApiNewsroomRequest) (Newsroom, *_n
 }
 
 type ApiOwnershipRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	limit *int64
+	symbol     *string
+	limit      *int64
 }
 
 // Symbol of the company: AAPL.
@@ -9884,6 +10176,7 @@ func (r ApiOwnershipRequest) Symbol(symbol string) ApiOwnershipRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Limit number of results. Leave empty to get the full list.
 func (r ApiOwnershipRequest) Limit(limit int64) ApiOwnershipRequest {
 	r.limit = &limit
@@ -9899,18 +10192,19 @@ Ownership Ownership
 
 Get a full list of shareholders of a company in descending order of the number of shares held. Data is sourced from <code>13F form</code>, <code>Schedule 13D</code> and <code>13G</code> for US market, <code>UK Share Register</code> for UK market, <code>SEDI</code> for Canadian market and equivalent filings for other international markets.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOwnershipRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiOwnershipRequest
 */
 func (a *DefaultApiService) Ownership(ctx _context.Context) ApiOwnershipRequest {
 	return ApiOwnershipRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Ownership
+//
+//	@return Ownership
 func (a *DefaultApiService) OwnershipExecute(r ApiOwnershipRequest) (Ownership, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10008,9 +10302,9 @@ func (a *DefaultApiService) OwnershipExecute(r ApiOwnershipRequest) (Ownership, 
 }
 
 type ApiPatternRecognitionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 	resolution *string
 }
 
@@ -10019,6 +10313,7 @@ func (r ApiPatternRecognitionRequest) Symbol(symbol string) ApiPatternRecognitio
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiPatternRecognitionRequest) Resolution(resolution string) ApiPatternRecognitionRequest {
 	r.resolution = &resolution
@@ -10034,18 +10329,19 @@ PatternRecognition Pattern Recognition
 
 Run pattern recognition algorithm on a symbol. Support double top/bottom, triple top/bottom, head and shoulders, triangle, wedge, channel, flag, and candlestick patterns.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPatternRecognitionRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPatternRecognitionRequest
 */
 func (a *DefaultApiService) PatternRecognition(ctx _context.Context) ApiPatternRecognitionRequest {
 	return ApiPatternRecognitionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PatternRecognition
+//
+//	@return PatternRecognition
 func (a *DefaultApiService) PatternRecognitionExecute(r ApiPatternRecognitionRequest) (PatternRecognition, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10144,11 +10440,11 @@ func (a *DefaultApiService) PatternRecognitionExecute(r ApiPatternRecognitionReq
 }
 
 type ApiPressReleasesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Company symbol.
@@ -10156,11 +10452,13 @@ func (r ApiPressReleasesRequest) Symbol(symbol string) ApiPressReleasesRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // From time: 2020-01-01.
 func (r ApiPressReleasesRequest) From(from string) ApiPressReleasesRequest {
 	r.from = &from
 	return r
 }
+
 // To time: 2020-01-05.
 func (r ApiPressReleasesRequest) To(to string) ApiPressReleasesRequest {
 	r.to = &to
@@ -10176,18 +10474,19 @@ PressReleases Major Press Releases
 
 <p>Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.</p><p>Full-text press releases data is available for Enterprise clients. <a href="mailto:support@finnhub.io">Contact Us</a> to learn more.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPressReleasesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPressReleasesRequest
 */
 func (a *DefaultApiService) PressReleases(ctx _context.Context) ApiPressReleasesRequest {
 	return ApiPressReleasesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PressRelease
+//
+//	@return PressRelease
 func (a *DefaultApiService) PressReleasesExecute(r ApiPressReleasesRequest) (PressRelease, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10288,10 +10587,10 @@ func (a *DefaultApiService) PressReleasesExecute(r ApiPressReleasesRequest) (Pre
 }
 
 type ApiPriceMetricsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	date *string
+	symbol     *string
+	date       *string
 }
 
 // Symbol of the company: AAPL.
@@ -10299,6 +10598,7 @@ func (r ApiPriceMetricsRequest) Symbol(symbol string) ApiPriceMetricsRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.
 func (r ApiPriceMetricsRequest) Date(date string) ApiPriceMetricsRequest {
 	r.date = &date
@@ -10314,18 +10614,19 @@ PriceMetrics Price Metrics
 
 Get company price performance statistics such as 52-week high/low, YTD return and much more.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPriceMetricsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPriceMetricsRequest
 */
 func (a *DefaultApiService) PriceMetrics(ctx _context.Context) ApiPriceMetricsRequest {
 	return ApiPriceMetricsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PriceMetrics
+//
+//	@return PriceMetrics
 func (a *DefaultApiService) PriceMetricsExecute(r ApiPriceMetricsRequest) (PriceMetrics, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10423,9 +10724,9 @@ func (a *DefaultApiService) PriceMetricsExecute(r ApiPriceMetricsRequest) (Price
 }
 
 type ApiPriceTargetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol of the company: AAPL.
@@ -10443,18 +10744,19 @@ PriceTarget Price Target
 
 Get latest price target consensus.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPriceTargetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPriceTargetRequest
 */
 func (a *DefaultApiService) PriceTarget(ctx _context.Context) ApiPriceTargetRequest {
 	return ApiPriceTargetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PriceTarget
+//
+//	@return PriceTarget
 func (a *DefaultApiService) PriceTargetExecute(r ApiPriceTargetRequest) (PriceTarget, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10549,9 +10851,9 @@ func (a *DefaultApiService) PriceTargetExecute(r ApiPriceTargetRequest) (PriceTa
 }
 
 type ApiQuoteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol
@@ -10569,18 +10871,19 @@ Quote Quote
 
 <p>Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time updates.</p><p>Real-time stock prices for international markets are supported for Enterprise clients via our partner's feed. <a href="mailto:support@finnhub.io">Contact Us</a> to learn more.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiQuoteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiQuoteRequest
 */
 func (a *DefaultApiService) Quote(ctx _context.Context) ApiQuoteRequest {
 	return ApiQuoteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Quote
+//
+//	@return Quote
 func (a *DefaultApiService) QuoteExecute(r ApiQuoteRequest) (Quote, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10675,9 +10978,9 @@ func (a *DefaultApiService) QuoteExecute(r ApiQuoteRequest) (Quote, *_nethttp.Re
 }
 
 type ApiRecommendationTrendsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol of the company: AAPL.
@@ -10695,18 +10998,19 @@ RecommendationTrends Recommendation Trends
 
 Get latest analyst recommendation trends for a company.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRecommendationTrendsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRecommendationTrendsRequest
 */
 func (a *DefaultApiService) RecommendationTrends(ctx _context.Context) ApiRecommendationTrendsRequest {
 	return ApiRecommendationTrendsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []RecommendationTrend
+//
+//	@return []RecommendationTrend
 func (a *DefaultApiService) RecommendationTrendsExecute(r ApiRecommendationTrendsRequest) ([]RecommendationTrend, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10801,10 +11105,10 @@ func (a *DefaultApiService) RecommendationTrendsExecute(r ApiRecommendationTrend
 }
 
 type ApiRevenueBreakdownRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	cik *string
+	symbol     *string
+	cik        *string
 }
 
 // Symbol.
@@ -10812,6 +11116,7 @@ func (r ApiRevenueBreakdownRequest) Symbol(symbol string) ApiRevenueBreakdownReq
 	r.symbol = &symbol
 	return r
 }
+
 // CIK.
 func (r ApiRevenueBreakdownRequest) Cik(cik string) ApiRevenueBreakdownRequest {
 	r.cik = &cik
@@ -10827,18 +11132,19 @@ RevenueBreakdown Revenue Breakdown
 
 <p>Get revenue breakdown as-reporetd by product and geography. Users on personal plans can access data for US companies which disclose their revenue breakdown in the annual or quarterly reports.</p><p>Global standardized revenue breakdown/segments data is available for Enterprise users. <a href="mailto:support@finnhub.io">Contact us</a> to inquire about the access for Global standardized data.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRevenueBreakdownRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRevenueBreakdownRequest
 */
 func (a *DefaultApiService) RevenueBreakdown(ctx _context.Context) ApiRevenueBreakdownRequest {
 	return ApiRevenueBreakdownRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RevenueBreakdown
+//
+//	@return RevenueBreakdown
 func (a *DefaultApiService) RevenueBreakdownExecute(r ApiRevenueBreakdownRequest) (RevenueBreakdown, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -10935,9 +11241,9 @@ func (a *DefaultApiService) RevenueBreakdownExecute(r ApiRevenueBreakdownRequest
 }
 
 type ApiRevenueBreakdown2Request struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol.
@@ -10955,18 +11261,19 @@ RevenueBreakdown2 Revenue Breakdown & KPI
 
 <p>Get standardized revenue breakdown and KPIs data for 30,000+ global companies.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRevenueBreakdown2Request
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRevenueBreakdown2Request
 */
 func (a *DefaultApiService) RevenueBreakdown2(ctx _context.Context) ApiRevenueBreakdown2Request {
 	return ApiRevenueBreakdown2Request{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RevenueBreakdown2
+//
+//	@return RevenueBreakdown2
 func (a *DefaultApiService) RevenueBreakdown2Execute(r ApiRevenueBreakdown2Request) (RevenueBreakdown2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11061,9 +11368,9 @@ func (a *DefaultApiService) RevenueBreakdown2Execute(r ApiRevenueBreakdown2Reque
 }
 
 type ApiSectorMetricRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	region *string
+	region     *string
 }
 
 // Region. A list of supported values for this field can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
@@ -11081,18 +11388,19 @@ SectorMetric Sector Metrics
 
 Get ratios for different sectors and regions/indices.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSectorMetricRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSectorMetricRequest
 */
 func (a *DefaultApiService) SectorMetric(ctx _context.Context) ApiSectorMetricRequest {
 	return ApiSectorMetricRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SectorMetric
+//
+//	@return SectorMetric
 func (a *DefaultApiService) SectorMetricExecute(r ApiSectorMetricRequest) (SectorMetric, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11187,11 +11495,11 @@ func (a *DefaultApiService) SectorMetricExecute(r ApiSectorMetricRequest) (Secto
 }
 
 type ApiSimilarityIndexRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	cik *string
-	freq *string
+	symbol     *string
+	cik        *string
+	freq       *string
 }
 
 // Symbol. Required if cik is empty
@@ -11199,11 +11507,13 @@ func (r ApiSimilarityIndexRequest) Symbol(symbol string) ApiSimilarityIndexReque
 	r.symbol = &symbol
 	return r
 }
+
 // CIK. Required if symbol is empty
 func (r ApiSimilarityIndexRequest) Cik(cik string) ApiSimilarityIndexRequest {
 	r.cik = &cik
 	return r
 }
+
 // &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;
 func (r ApiSimilarityIndexRequest) Freq(freq string) ApiSimilarityIndexRequest {
 	r.freq = &freq
@@ -11219,18 +11529,19 @@ SimilarityIndex Similarity Index
 
 <p>Calculate the textual difference between a company's 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company's stock price in the upcoming 4 quarters.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSimilarityIndexRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSimilarityIndexRequest
 */
 func (a *DefaultApiService) SimilarityIndex(ctx _context.Context) ApiSimilarityIndexRequest {
 	return ApiSimilarityIndexRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SimilarityIndex
+//
+//	@return SimilarityIndex
 func (a *DefaultApiService) SimilarityIndexExecute(r ApiSimilarityIndexRequest) (SimilarityIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11330,11 +11641,11 @@ func (a *DefaultApiService) SimilarityIndexExecute(r ApiSimilarityIndexRequest) 
 }
 
 type ApiSocialSentimentRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Company symbol.
@@ -11342,11 +11653,13 @@ func (r ApiSocialSentimentRequest) Symbol(symbol string) ApiSocialSentimentReque
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiSocialSentimentRequest) From(from string) ApiSocialSentimentRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiSocialSentimentRequest) To(to string) ApiSocialSentimentRequest {
 	r.to = &to
@@ -11362,18 +11675,19 @@ SocialSentiment Social Sentiment
 
 <p>Get social sentiment for stocks on Reddit and Twitter.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSocialSentimentRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSocialSentimentRequest
 */
 func (a *DefaultApiService) SocialSentiment(ctx _context.Context) ApiSocialSentimentRequest {
 	return ApiSocialSentimentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SocialSentiment
+//
+//	@return SocialSentiment
 func (a *DefaultApiService) SocialSentimentExecute(r ApiSocialSentimentRequest) (SocialSentiment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11474,9 +11788,9 @@ func (a *DefaultApiService) SocialSentimentExecute(r ApiSocialSentimentRequest) 
 }
 
 type ApiStockBasicDividendsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol.
@@ -11494,18 +11808,19 @@ StockBasicDividends Dividends 2 (Basic)
 
 Get global dividends data.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockBasicDividendsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockBasicDividendsRequest
 */
 func (a *DefaultApiService) StockBasicDividends(ctx _context.Context) ApiStockBasicDividendsRequest {
 	return ApiStockBasicDividendsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Dividends2
+//
+//	@return Dividends2
 func (a *DefaultApiService) StockBasicDividendsExecute(r ApiStockBasicDividendsRequest) (Dividends2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11600,9 +11915,9 @@ func (a *DefaultApiService) StockBasicDividendsExecute(r ApiStockBasicDividendsR
 }
 
 type ApiStockBidaskRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol.
@@ -11620,18 +11935,19 @@ StockBidask Last Bid-Ask
 
 Get last bid/ask data for US stocks.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockBidaskRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockBidaskRequest
 */
 func (a *DefaultApiService) StockBidask(ctx _context.Context) ApiStockBidaskRequest {
 	return ApiStockBidaskRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return LastBidAsk
+//
+//	@return LastBidAsk
 func (a *DefaultApiService) StockBidaskExecute(r ApiStockBidaskRequest) (LastBidAsk, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11726,12 +12042,12 @@ func (a *DefaultApiService) StockBidaskExecute(r ApiStockBidaskRequest) (LastBid
 }
 
 type ApiStockCandlesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 	resolution *string
-	from *int64
-	to *int64
+	from       *int64
+	to         *int64
 }
 
 // Symbol.
@@ -11739,16 +12055,19 @@ func (r ApiStockCandlesRequest) Symbol(symbol string) ApiStockCandlesRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiStockCandlesRequest) Resolution(resolution string) ApiStockCandlesRequest {
 	r.resolution = &resolution
 	return r
 }
+
 // UNIX timestamp. Interval initial value.
 func (r ApiStockCandlesRequest) From(from int64) ApiStockCandlesRequest {
 	r.from = &from
 	return r
 }
+
 // UNIX timestamp. Interval end value.
 func (r ApiStockCandlesRequest) To(to int64) ApiStockCandlesRequest {
 	r.to = &to
@@ -11764,18 +12083,19 @@ StockCandles Stock Candles
 
 <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month of intraday will be returned at a time. If you need more historical intraday data, please use the from and to params iteratively to request more data.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockCandlesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockCandlesRequest
 */
 func (a *DefaultApiService) StockCandles(ctx _context.Context) ApiStockCandlesRequest {
 	return ApiStockCandlesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return StockCandles
+//
+//	@return StockCandles
 func (a *DefaultApiService) StockCandlesExecute(r ApiStockCandlesRequest) (StockCandles, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -11882,11 +12202,11 @@ func (a *DefaultApiService) StockCandlesExecute(r ApiStockCandlesRequest) (Stock
 }
 
 type ApiStockDividendsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol.
@@ -11894,11 +12214,13 @@ func (r ApiStockDividendsRequest) Symbol(symbol string) ApiStockDividendsRequest
 	r.symbol = &symbol
 	return r
 }
+
 // YYYY-MM-DD.
 func (r ApiStockDividendsRequest) From(from string) ApiStockDividendsRequest {
 	r.from = &from
 	return r
 }
+
 // YYYY-MM-DD.
 func (r ApiStockDividendsRequest) To(to string) ApiStockDividendsRequest {
 	r.to = &to
@@ -11914,18 +12236,19 @@ StockDividends Dividends
 
 Get dividends data for common stocks going back 30 years.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockDividendsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockDividendsRequest
 */
 func (a *DefaultApiService) StockDividends(ctx _context.Context) ApiStockDividendsRequest {
 	return ApiStockDividendsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []Dividends
+//
+//	@return []Dividends
 func (a *DefaultApiService) StockDividendsExecute(r ApiStockDividendsRequest) ([]Dividends, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12028,11 +12351,11 @@ func (a *DefaultApiService) StockDividendsExecute(r ApiStockDividendsRequest) ([
 }
 
 type ApiStockLobbyingRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol.
@@ -12040,11 +12363,13 @@ func (r ApiStockLobbyingRequest) Symbol(symbol string) ApiStockLobbyingRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiStockLobbyingRequest) From(from string) ApiStockLobbyingRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiStockLobbyingRequest) To(to string) ApiStockLobbyingRequest {
 	r.to = &to
@@ -12060,18 +12385,19 @@ StockLobbying Senate Lobbying
 
 Get a list of reported lobbying activities in the Senate and the House.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockLobbyingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockLobbyingRequest
 */
 func (a *DefaultApiService) StockLobbying(ctx _context.Context) ApiStockLobbyingRequest {
 	return ApiStockLobbyingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return LobbyingResult
+//
+//	@return LobbyingResult
 func (a *DefaultApiService) StockLobbyingExecute(r ApiStockLobbyingRequest) (LobbyingResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12174,12 +12500,12 @@ func (a *DefaultApiService) StockLobbyingExecute(r ApiStockLobbyingRequest) (Lob
 }
 
 type ApiStockNbboRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	date *string
-	limit *int64
-	skip *int64
+	symbol     *string
+	date       *string
+	limit      *int64
+	skip       *int64
 }
 
 // Symbol.
@@ -12187,16 +12513,19 @@ func (r ApiStockNbboRequest) Symbol(symbol string) ApiStockNbboRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Date: 2020-04-02.
 func (r ApiStockNbboRequest) Date(date string) ApiStockNbboRequest {
 	r.date = &date
 	return r
 }
+
 // Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
 func (r ApiStockNbboRequest) Limit(limit int64) ApiStockNbboRequest {
 	r.limit = &limit
 	return r
 }
+
 // Number of ticks to skip. Use this parameter to loop through the entire data.
 func (r ApiStockNbboRequest) Skip(skip int64) ApiStockNbboRequest {
 	r.skip = &skip
@@ -12212,18 +12541,19 @@ StockNbbo Historical NBBO
 
 <p>Get historical best bid and offer for US stocks, LSE, TSX, Euronext and Deutsche Borse.</p><p>For US market, this endpoint only serves historical NBBO from the beginning of 2023. To download more historical data, please visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a>.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockNbboRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockNbboRequest
 */
 func (a *DefaultApiService) StockNbbo(ctx _context.Context) ApiStockNbboRequest {
 	return ApiStockNbboRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return HistoricalNBBO
+//
+//	@return HistoricalNBBO
 func (a *DefaultApiService) StockNbboExecute(r ApiStockNbboRequest) (HistoricalNBBO, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12330,9 +12660,9 @@ func (a *DefaultApiService) StockNbboExecute(r ApiStockNbboRequest) (HistoricalN
 }
 
 type ApiStockPresentationRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Company symbol.
@@ -12350,18 +12680,19 @@ StockPresentation Company Presentation
 
 <p>Get presentations/slides data in PDF format that are usually used during earnings calls.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockPresentationRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockPresentationRequest
 */
 func (a *DefaultApiService) StockPresentation(ctx _context.Context) ApiStockPresentationRequest {
 	return ApiStockPresentationRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return StockPresentation
+//
+//	@return StockPresentation
 func (a *DefaultApiService) StockPresentationExecute(r ApiStockPresentationRequest) (StockPresentation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12456,11 +12787,11 @@ func (a *DefaultApiService) StockPresentationExecute(r ApiStockPresentationReque
 }
 
 type ApiStockSplitsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol.
@@ -12468,11 +12799,13 @@ func (r ApiStockSplitsRequest) Symbol(symbol string) ApiStockSplitsRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // YYYY-MM-DD.
 func (r ApiStockSplitsRequest) From(from string) ApiStockSplitsRequest {
 	r.from = &from
 	return r
 }
+
 // YYYY-MM-DD.
 func (r ApiStockSplitsRequest) To(to string) ApiStockSplitsRequest {
 	r.to = &to
@@ -12488,18 +12821,19 @@ StockSplits Splits
 
 Get splits data for stocks.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockSplitsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockSplitsRequest
 */
 func (a *DefaultApiService) StockSplits(ctx _context.Context) ApiStockSplitsRequest {
 	return ApiStockSplitsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []Split
+//
+//	@return []Split
 func (a *DefaultApiService) StockSplitsExecute(r ApiStockSplitsRequest) ([]Split, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12602,12 +12936,12 @@ func (a *DefaultApiService) StockSplitsExecute(r ApiStockSplitsRequest) ([]Split
 }
 
 type ApiStockSymbolsRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	exchange *string
-	mic *string
+	ctx          _context.Context
+	ApiService   *DefaultApiService
+	exchange     *string
+	mic          *string
 	securityType *string
-	currency *string
+	currency     *string
 }
 
 // Exchange you want to get the list of symbols from. List of exchange codes can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
@@ -12615,16 +12949,19 @@ func (r ApiStockSymbolsRequest) Exchange(exchange string) ApiStockSymbolsRequest
 	r.exchange = &exchange
 	return r
 }
+
 // Filter by MIC code.
 func (r ApiStockSymbolsRequest) Mic(mic string) ApiStockSymbolsRequest {
 	r.mic = &mic
 	return r
 }
+
 // Filter by security type used by OpenFigi standard.
 func (r ApiStockSymbolsRequest) SecurityType(securityType string) ApiStockSymbolsRequest {
 	r.securityType = &securityType
 	return r
 }
+
 // Filter by currency.
 func (r ApiStockSymbolsRequest) Currency(currency string) ApiStockSymbolsRequest {
 	r.currency = &currency
@@ -12640,18 +12977,19 @@ StockSymbols Stock Symbol
 
 List supported stocks. We use the following symbology to identify stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported exchange codes can be found <a href="https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockSymbolsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockSymbolsRequest
 */
 func (a *DefaultApiService) StockSymbols(ctx _context.Context) ApiStockSymbolsRequest {
 	return ApiStockSymbolsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []StockSymbol
+//
+//	@return []StockSymbol
 func (a *DefaultApiService) StockSymbolsExecute(r ApiStockSymbolsRequest) ([]StockSymbol, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12755,12 +13093,12 @@ func (a *DefaultApiService) StockSymbolsExecute(r ApiStockSymbolsRequest) ([]Sto
 }
 
 type ApiStockTickRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	date *string
-	limit *int64
-	skip *int64
+	symbol     *string
+	date       *string
+	limit      *int64
+	skip       *int64
 }
 
 // Symbol.
@@ -12768,16 +13106,19 @@ func (r ApiStockTickRequest) Symbol(symbol string) ApiStockTickRequest {
 	r.symbol = &symbol
 	return r
 }
+
 // Date: 2020-04-02.
 func (r ApiStockTickRequest) Date(date string) ApiStockTickRequest {
 	r.date = &date
 	return r
 }
+
 // Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
 func (r ApiStockTickRequest) Limit(limit int64) ApiStockTickRequest {
 	r.limit = &limit
 	return r
 }
+
 // Number of ticks to skip. Use this parameter to loop through the entire data.
 func (r ApiStockTickRequest) Skip(skip int64) ApiStockTickRequest {
 	r.skip = &skip
@@ -12792,54 +13133,57 @@ func (r ApiStockTickRequest) Execute() (TickData, *_nethttp.Response, error) {
 StockTick Tick Data
 
 <p>Get historical tick data for global exchanges.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target="_blank" href="/dashboard/download",>here</a> to speed up the download process.</p><table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Exchange</th>
-      <th>Segment</th>
-      <th>Delay</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-blue">US CTA/UTP</th>
-      <td>Full SIP</td>
-      <td>End-of-day</td>
-    </tr>
-    <tr>
-      <td class="text-blue">TSX</th>
-      <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>
-      <td>End-of-day</td>
-    </tr>
-    <tr>
-      <td class="text-blue">LSE</th>
-      <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>
-      <td>15 minute</td>
-    </tr>
-    <tr>
-      <td class="text-blue">Euronext</th>
-      <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>
-      <td>End-of-day</td>
-    </tr>
-    <tr>
-      <td class="text-blue">Deutsche Börse</th>
-      <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>
-      <td>End-of-day</td>
-    </tr>
-  </tbody>
+
+	<thead>
+	  <tr>
+	    <th>Exchange</th>
+	    <th>Segment</th>
+	    <th>Delay</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td class="text-blue">US CTA/UTP</th>
+	    <td>Full SIP</td>
+	    <td>End-of-day</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">TSX</th>
+	    <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>
+	    <td>End-of-day</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">LSE</th>
+	    <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>
+	    <td>15 minute</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">Euronext</th>
+	    <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>
+	    <td>End-of-day</td>
+	  </tr>
+	  <tr>
+	    <td class="text-blue">Deutsche Börse</th>
+	    <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>
+	    <td>End-of-day</td>
+	  </tr>
+	</tbody>
+
 </table>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockTickRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockTickRequest
 */
 func (a *DefaultApiService) StockTick(ctx _context.Context) ApiStockTickRequest {
 	return ApiStockTickRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TickData
+//
+//	@return TickData
 func (a *DefaultApiService) StockTickExecute(r ApiStockTickRequest) (TickData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -12946,11 +13290,11 @@ func (a *DefaultApiService) StockTickExecute(r ApiStockTickRequest) (TickData, *
 }
 
 type ApiStockUsaSpendingRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol.
@@ -12958,11 +13302,13 @@ func (r ApiStockUsaSpendingRequest) Symbol(symbol string) ApiStockUsaSpendingReq
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
 func (r ApiStockUsaSpendingRequest) From(from string) ApiStockUsaSpendingRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
 func (r ApiStockUsaSpendingRequest) To(to string) ApiStockUsaSpendingRequest {
 	r.to = &to
@@ -12978,18 +13324,19 @@ StockUsaSpending USA Spending
 
 Get a list of government's spending activities from USASpending dataset for public companies. This dataset can help you identify companies that win big government contracts which is extremely important for industries such as Defense, Aerospace, and Education.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockUsaSpendingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockUsaSpendingRequest
 */
 func (a *DefaultApiService) StockUsaSpending(ctx _context.Context) ApiStockUsaSpendingRequest {
 	return ApiStockUsaSpendingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsaSpendingResult
+//
+//	@return UsaSpendingResult
 func (a *DefaultApiService) StockUsaSpendingExecute(r ApiStockUsaSpendingRequest) (UsaSpendingResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13092,11 +13439,11 @@ func (a *DefaultApiService) StockUsaSpendingExecute(r ApiStockUsaSpendingRequest
 }
 
 type ApiStockUsptoPatentRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol.
@@ -13104,11 +13451,13 @@ func (r ApiStockUsptoPatentRequest) Symbol(symbol string) ApiStockUsptoPatentReq
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiStockUsptoPatentRequest) From(from string) ApiStockUsptoPatentRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiStockUsptoPatentRequest) To(to string) ApiStockUsptoPatentRequest {
 	r.to = &to
@@ -13124,18 +13473,19 @@ StockUsptoPatent USPTO Patents
 
 List USPTO patents for companies. Limit to 250 records per API call.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockUsptoPatentRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockUsptoPatentRequest
 */
 func (a *DefaultApiService) StockUsptoPatent(ctx _context.Context) ApiStockUsptoPatentRequest {
 	return ApiStockUsptoPatentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsptoPatentResult
+//
+//	@return UsptoPatentResult
 func (a *DefaultApiService) StockUsptoPatentExecute(r ApiStockUsptoPatentRequest) (UsptoPatentResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13238,11 +13588,11 @@ func (a *DefaultApiService) StockUsptoPatentExecute(r ApiStockUsptoPatentRequest
 }
 
 type ApiStockVisaApplicationRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol.
@@ -13250,11 +13600,13 @@ func (r ApiStockVisaApplicationRequest) Symbol(symbol string) ApiStockVisaApplic
 	r.symbol = &symbol
 	return r
 }
+
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column.
 func (r ApiStockVisaApplicationRequest) From(from string) ApiStockVisaApplicationRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column.
 func (r ApiStockVisaApplicationRequest) To(to string) ApiStockVisaApplicationRequest {
 	r.to = &to
@@ -13270,18 +13622,19 @@ StockVisaApplication H1-B Visa Application
 
 Get a list of H1-B and Permanent visa applications for companies from the DOL. The data is updated quarterly.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStockVisaApplicationRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiStockVisaApplicationRequest
 */
 func (a *DefaultApiService) StockVisaApplication(ctx _context.Context) ApiStockVisaApplicationRequest {
 	return ApiStockVisaApplicationRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return VisaApplicationResult
+//
+//	@return VisaApplicationResult
 func (a *DefaultApiService) StockVisaApplicationExecute(r ApiStockVisaApplicationRequest) (VisaApplicationResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13384,9 +13737,9 @@ func (a *DefaultApiService) StockVisaApplicationExecute(r ApiStockVisaApplicatio
 }
 
 type ApiSupplyChainRelationshipsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Symbol.
@@ -13404,18 +13757,19 @@ SupplyChainRelationships Supply Chain Relationships
 
 <p>This endpoint provides an overall map of public companies' key customers and suppliers. The data offers a deeper look into a company's supply chain and how products are created. The data will help investors manage risk, limit exposure or generate alpha-generating ideas and trading insights.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSupplyChainRelationshipsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSupplyChainRelationshipsRequest
 */
 func (a *DefaultApiService) SupplyChainRelationships(ctx _context.Context) ApiSupplyChainRelationshipsRequest {
 	return ApiSupplyChainRelationshipsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SupplyChainRelationships
+//
+//	@return SupplyChainRelationships
 func (a *DefaultApiService) SupplyChainRelationshipsExecute(r ApiSupplyChainRelationshipsRequest) (SupplyChainRelationships, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13510,9 +13864,9 @@ func (a *DefaultApiService) SupplyChainRelationshipsExecute(r ApiSupplyChainRela
 }
 
 type ApiSupportResistanceRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 	resolution *string
 }
 
@@ -13521,6 +13875,7 @@ func (r ApiSupportResistanceRequest) Symbol(symbol string) ApiSupportResistanceR
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiSupportResistanceRequest) Resolution(resolution string) ApiSupportResistanceRequest {
 	r.resolution = &resolution
@@ -13536,18 +13891,19 @@ SupportResistance Support/Resistance
 
 Get support and resistance levels for a symbol.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSupportResistanceRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSupportResistanceRequest
 */
 func (a *DefaultApiService) SupportResistance(ctx _context.Context) ApiSupportResistanceRequest {
 	return ApiSupportResistanceRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SupportResistance
+//
+//	@return SupportResistance
 func (a *DefaultApiService) SupportResistanceExecute(r ApiSupportResistanceRequest) (SupportResistance, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13646,10 +14002,10 @@ func (a *DefaultApiService) SupportResistanceExecute(r ApiSupportResistanceReque
 }
 
 type ApiSymbolChangeRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	from *string
-	to *string
+	from       *string
+	to         *string
 }
 
 // From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -13657,6 +14013,7 @@ func (r ApiSymbolChangeRequest) From(from string) ApiSymbolChangeRequest {
 	r.from = &from
 	return r
 }
+
 // To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
 func (r ApiSymbolChangeRequest) To(to string) ApiSymbolChangeRequest {
 	r.to = &to
@@ -13672,18 +14029,19 @@ SymbolChange Symbol Change
 
 Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. Limit to 2000 events at a time.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSymbolChangeRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSymbolChangeRequest
 */
 func (a *DefaultApiService) SymbolChange(ctx _context.Context) ApiSymbolChangeRequest {
 	return ApiSymbolChangeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SymbolChange
+//
+//	@return SymbolChange
 func (a *DefaultApiService) SymbolChangeExecute(r ApiSymbolChangeRequest) (SymbolChange, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13782,10 +14140,10 @@ func (a *DefaultApiService) SymbolChangeExecute(r ApiSymbolChangeRequest) (Symbo
 }
 
 type ApiSymbolSearchRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	q *string
-	exchange *string
+	q          *string
+	exchange   *string
 }
 
 // Query text can be symbol, name, isin, or cusip.
@@ -13793,6 +14151,7 @@ func (r ApiSymbolSearchRequest) Q(q string) ApiSymbolSearchRequest {
 	r.q = &q
 	return r
 }
+
 // Exchange limit.
 func (r ApiSymbolSearchRequest) Exchange(exchange string) ApiSymbolSearchRequest {
 	r.exchange = &exchange
@@ -13808,18 +14167,19 @@ SymbolSearch Symbol Lookup
 
 Search for best-matching symbols based on your query. You can input anything from symbol, security's name to ISIN and Cusip.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSymbolSearchRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSymbolSearchRequest
 */
 func (a *DefaultApiService) SymbolSearch(ctx _context.Context) ApiSymbolSearchRequest {
 	return ApiSymbolSearchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SymbolLookup
+//
+//	@return SymbolLookup
 func (a *DefaultApiService) SymbolSearchExecute(r ApiSymbolSearchRequest) (SymbolLookup, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -13917,13 +14277,13 @@ func (a *DefaultApiService) SymbolSearchExecute(r ApiSymbolSearchRequest) (Symbo
 }
 
 type ApiTechnicalIndicatorRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	symbol *string
-	resolution *string
-	from *int64
-	to *int64
-	indicator *string
+	ctx             _context.Context
+	ApiService      *DefaultApiService
+	symbol          *string
+	resolution      *string
+	from            *int64
+	to              *int64
+	indicator       *string
 	indicatorFields *map[string]interface{}
 }
 
@@ -13932,26 +14292,31 @@ func (r ApiTechnicalIndicatorRequest) Symbol(symbol string) ApiTechnicalIndicato
 	r.symbol = &symbol
 	return r
 }
+
 // Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
 func (r ApiTechnicalIndicatorRequest) Resolution(resolution string) ApiTechnicalIndicatorRequest {
 	r.resolution = &resolution
 	return r
 }
+
 // UNIX timestamp. Interval initial value.
 func (r ApiTechnicalIndicatorRequest) From(from int64) ApiTechnicalIndicatorRequest {
 	r.from = &from
 	return r
 }
+
 // UNIX timestamp. Interval end value.
 func (r ApiTechnicalIndicatorRequest) To(to int64) ApiTechnicalIndicatorRequest {
 	r.to = &to
 	return r
 }
+
 // Indicator name. Full list can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
 func (r ApiTechnicalIndicatorRequest) Indicator(indicator string) ApiTechnicalIndicatorRequest {
 	r.indicator = &indicator
 	return r
 }
+
 // Check out &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;this page&lt;/a&gt; to see which indicators and params are supported.
 func (r ApiTechnicalIndicatorRequest) IndicatorFields(indicatorFields map[string]interface{}) ApiTechnicalIndicatorRequest {
 	r.indicatorFields = &indicatorFields
@@ -13967,18 +14332,19 @@ TechnicalIndicator Technical Indicators
 
 Return technical indicator with price data. List of supported indicators can be found <a href="https://docs.google.com/spreadsheets/d/1ylUvKHVYN2E87WdwIza8ROaCpd48ggEl1k5i5SgA29k/edit?usp=sharing" target="_blank">here</a>.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTechnicalIndicatorRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTechnicalIndicatorRequest
 */
 func (a *DefaultApiService) TechnicalIndicator(ctx _context.Context) ApiTechnicalIndicatorRequest {
 	return ApiTechnicalIndicatorRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *DefaultApiService) TechnicalIndicatorExecute(r ApiTechnicalIndicatorRequest) (map[string]interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -14091,9 +14457,9 @@ func (a *DefaultApiService) TechnicalIndicatorExecute(r ApiTechnicalIndicatorReq
 }
 
 type ApiTranscriptsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	id *string
+	id         *string
 }
 
 // Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
@@ -14111,18 +14477,19 @@ Transcripts Earnings Call Transcripts
 
 <p>Get earnings call transcripts, audio and participants' list. Data is available for US, UK, European, Australian and Canadian companies.<p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTranscriptsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTranscriptsRequest
 */
 func (a *DefaultApiService) Transcripts(ctx _context.Context) ApiTranscriptsRequest {
 	return ApiTranscriptsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EarningsCallTranscripts
+//
+//	@return EarningsCallTranscripts
 func (a *DefaultApiService) TranscriptsExecute(r ApiTranscriptsRequest) (EarningsCallTranscripts, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -14217,9 +14584,9 @@ func (a *DefaultApiService) TranscriptsExecute(r ApiTranscriptsRequest) (Earning
 }
 
 type ApiTranscriptsListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
+	symbol     *string
 }
 
 // Company symbol: AAPL. Leave empty to list the latest transcripts
@@ -14237,18 +14604,19 @@ TranscriptsList Earnings Call Transcripts List
 
 List earnings call transcripts' metadata. This endpoint is available for US, UK, European, Australian and Canadian companies.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTranscriptsListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTranscriptsListRequest
 */
 func (a *DefaultApiService) TranscriptsList(ctx _context.Context) ApiTranscriptsListRequest {
 	return ApiTranscriptsListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return EarningsCallTranscriptsList
+//
+//	@return EarningsCallTranscriptsList
 func (a *DefaultApiService) TranscriptsListExecute(r ApiTranscriptsListRequest) (EarningsCallTranscriptsList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
@@ -14343,11 +14711,11 @@ func (a *DefaultApiService) TranscriptsListExecute(r ApiTranscriptsListRequest) 
 }
 
 type ApiUpgradeDowngradeRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	symbol *string
-	from *string
-	to *string
+	symbol     *string
+	from       *string
+	to         *string
 }
 
 // Symbol of the company: AAPL. If left blank, the API will return latest stock upgrades/downgrades.
@@ -14355,11 +14723,13 @@ func (r ApiUpgradeDowngradeRequest) Symbol(symbol string) ApiUpgradeDowngradeReq
 	r.symbol = &symbol
 	return r
 }
+
 // From date: 2000-03-15.
 func (r ApiUpgradeDowngradeRequest) From(from string) ApiUpgradeDowngradeRequest {
 	r.from = &from
 	return r
 }
+
 // To date: 2020-03-16.
 func (r ApiUpgradeDowngradeRequest) To(to string) ApiUpgradeDowngradeRequest {
 	r.to = &to
@@ -14375,18 +14745,19 @@ UpgradeDowngrade Stock Upgrade/Downgrade
 
 Get latest stock upgrade and downgrade.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpgradeDowngradeRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpgradeDowngradeRequest
 */
 func (a *DefaultApiService) UpgradeDowngrade(ctx _context.Context) ApiUpgradeDowngradeRequest {
 	return ApiUpgradeDowngradeRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []UpgradeDowngrade
+//
+//	@return []UpgradeDowngrade
 func (a *DefaultApiService) UpgradeDowngradeExecute(r ApiUpgradeDowngradeRequest) ([]UpgradeDowngrade, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet

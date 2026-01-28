@@ -307,6 +307,10 @@ func main() {
     etfsCountryExposureData, _, err := finnhubClient.EtfsCountryExposure(context.Background()).Symbol("SPY").Execute()
     fmt.Printf("%+v\n", etfsCountryExposureData)
 
+    // ETFs Allocation
+    etfsAllocationData, _, err := finnhubClient.EtfsAllocation(context.Background()).Symbol("SPY").Execute()
+    fmt.Printf("%+v\n", etfsAllocationData)
+
     // Mutual Funds Profile
     mfProfileData, _, err := finnhubClient.MutualFundProfile(context.Background()).Symbol("VTSAX").Execute()
     fmt.Printf("%+v\n", mfProfileData)
