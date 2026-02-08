@@ -30,6 +30,8 @@ type Quote struct {
 	D *float32 `json:"d,omitempty"`
 	// Percent change
 	Dp *float32 `json:"dp,omitempty"`
+	// Timestamp of the last market update.
+	T *int64 `json:"t,omitempty"`
 }
 
 // NewQuote instantiates a new Quote object
@@ -273,6 +275,38 @@ func (o *Quote) SetDp(v float32) {
 	o.Dp = &v
 }
 
+// GetT returns the T field value if set, zero value otherwise.
+func (o *Quote) GetT() int64 {
+	if o == nil || o.T == nil {
+		var ret int64
+		return ret
+	}
+	return *o.T
+}
+
+// GetTOk returns a tuple with the T field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quote) GetTOk() (*int64, bool) {
+	if o == nil || o.T == nil {
+		return nil, false
+	}
+	return o.T, true
+}
+
+// HasT returns a boolean if a field has been set.
+func (o *Quote) HasT() bool {
+	if o != nil && o.T != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetT gets a reference to the given int64 and assigns it to the T field.
+func (o *Quote) SetT(v int64) {
+	o.T = &v
+}
+
 func (o Quote) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.O != nil {
@@ -295,6 +329,9 @@ func (o Quote) MarshalJSON() ([]byte, error) {
 	}
 	if o.Dp != nil {
 		toSerialize["dp"] = o.Dp
+	}
+	if o.T != nil {
+		toSerialize["t"] = o.T
 	}
 	return json.Marshal(toSerialize)
 }

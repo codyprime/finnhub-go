@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **C** | Pointer to **float32** | Current price | [optional] 
 **Pc** | Pointer to **float32** | Previous close price | [optional] 
 **D** | Pointer to **float32** | Change | [optional] 
-**Dp** | Pointer to **float32** | Percent change | [optional] 
+**Dp** | Pointer to **float32** | Percent change | [optional]
+**T** | Pointer to **int64** | Timestamp of the last market update | [optional]
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetDp sets Dp field to given value.
 `func (o *Quote) HasDp() bool`
 
 HasDp returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *Quote) GetT() int64`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *Quote) GetTOk() (*int64, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *Quote) SetT(v int64)`
+
+SetT sets T field to given value.
+
+### HasT
+
+`func (o *Quote) HasT() bool`
+
+HasT returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
